@@ -1,6 +1,8 @@
 # Thesis_project
 This pipeline was made for my MSc thesis (linking 16&amp;18S marker genes to MAGs)
 
+This is a snakemake workflow that uses conda for package management.
+
 General structure of this Repo:
 ├── .gitignore
 ├── README.md
