@@ -1,1 +1,2 @@
 Pipeline/.snakemake/log/*
+Pipeline/scripts/__pycache__/*
