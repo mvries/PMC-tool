@@ -1,0 +1,34 @@
+#This is the master snakemake file.
+#To run the workflow: snakemake --cores "ncores" "sample_dir/" "outdir/"
+#The following structure of input directories is needed: [samples]/[sample]/#.fq
+
+#Import statements:
+from snakemake.utils import min_version
+min_version("6.0")
+from sys import argv
+import subprocess
+
+from scripts import make_config
+
+
+###############################################################################
+###Prepare for execution###
+
+#Set sample dir:
+sample_dir = sys.argv[3]
+#Set output dir:
+out_dir = sys.argv[4]
+#Establish path to config_file:
+config_path = "../config/config.yaml"
+
+###Write samples to config file:
+cmd = "python3 scripts/make_config.py {} {}".format(sample_dir, config_path)
+subprocess.check_call(cmd, shell=True)
+
+
+###############################################################################
+###Execute main snakemake workflow###
+
+
+###############################################################################
+###Post workflow cleanup###
