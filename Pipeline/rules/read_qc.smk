@@ -8,17 +8,6 @@
 #Import statements:
 from sys import argv
 
-#Declare path to configfile:
-configfile: "../../config/config.yaml"
-
-#Main rule:
-rule all:
-    input:
-        expand("{sample_dir}{sample}/{sample}_{Rnum}_trimmed.fq.gz",
-        sample_dir=config["INPUT_PATH"],
-        sample = config["SAMPLES"],
-        Rnum=['1', '2'])
-
 #Rule to run fastp quality control:
 rule fastp:
     input:
