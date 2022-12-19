@@ -1,0 +1,3 @@
+*/.snakemake/*
+Pipeline/scripts/__pycache__/*
+Pipeline/rules/.snakemake/*
