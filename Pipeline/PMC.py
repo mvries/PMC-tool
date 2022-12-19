@@ -1,6 +1,6 @@
 #This is a python wrapper that controlls the entire workflow.
 #Running this script with the required inputs automatically performs analysis.
-#To use: Python3 PMC.py sample_dir/ Output_dir/
+#To use: Python3 PMC.py sample_dir/ Output_dir/ configfile
 
 #Import statements:
 from sys import argv
@@ -21,4 +21,16 @@ subprocess.check_call(cmd, shell=True)
 
 #Run the snekmake workflow:
 cmd = "snakemake --cores 4 --use-conda"
+subprocess.check_call(cmd, shell=True)
+
+#Collect output to desired directory:
+cmd = f"mkdir {output_dir}"
+subprocess.check_call(cmd, shell=True)
+cmd = f"mv {sample_dir}qc/ {output_dir}qc"
+subprocess.check_call(cmd, shell=True)
+
+#Reset config file for next run:
+cmd = "rm ../config/config.yaml"
+subprocess.check_call(cmd, shell=True)
+cmd = "cp ../config/config_backup ../config/config.yaml"
 subprocess.check_call(cmd, shell=True)

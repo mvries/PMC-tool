@@ -1,12 +1,7 @@
 #This is a snakemake rule that is used for the qc of short read data.
 #This rule takes as input paired end read files and outputs: Trimmed reads and quality reports.
 #The quality control tool used in this case is fastp.
-#To use: snakemake --cores ncores --snakefile read_qc.smk sample_dir configfile
-#Samples should be written to configfile first (use make_config.py).
 #By default reports are stored in the same dir as the input reads.
-
-#Import statements:
-from sys import argv
 
 #Rule to run fastp quality control:
 rule fastp:

@@ -29,17 +29,3 @@ module read_qc:
 
 #Run the module:
 use rule fastp from read_qc as read_qc_fastp
-
-
-"""
-Move reports to out dir:
-"""
-
-###############################################################################
-###Post workflow cleanup###
-
-#Reset config file for next run:
-cmd = "rm ../config/config.yaml"
-subprocess.check_call(cmd, shell=True)
-cmd = "cp ../config/config_backup ../config/config.yaml"
-subprocess.check_call(cmd, shell=True)
