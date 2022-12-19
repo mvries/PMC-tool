@@ -15,20 +15,38 @@ from scripts import make_config
 ###Prepare for execution###
 
 #Set sample dir:
-sample_dir = sys.argv[3]
+sample_dir = sys.argv[4]
 #Set output dir:
-out_dir = sys.argv[4]
+out_dir = sys.argv[5]
 #Establish path to config_file:
 config_path = "../config/config.yaml"
 
 ###Write samples to config file:
-cmd = "python3 scripts/make_config.py {} {}".format(sample_dir, config_path)
+cmd = "python3 scripts/make_config.py {} {} {}".format(sample_dir, config_path, out_dir)
+print(cmd)
 subprocess.check_call(cmd, shell=True)
 
 
 ###############################################################################
 ###Execute main snakemake workflow###
+"""
+#Rule 1: Quality control of input reads:
+#Open the module:
+module read_qc:
+    snakefile:
+        "rules/read_qc.smk"
 
+#Run the module:
+use rule fastp from read_qc as fastp with:
+    output
+"""
+
+"""
+Move reports to out dir:
+"""
 
 ###############################################################################
 ###Post workflow cleanup###
+"""
+Replace config file with fresh file.
+"""
