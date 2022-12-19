@@ -6,8 +6,8 @@
 #Rule to run fastp quality control:
 rule fastp:
     input:
-        r1="{sample_dir}{sample}/{sample}_1.fastq.gz",
-        r2="{sample_dir}{sample}/{sample}_2.fastq.gz"
+        r1="{sample_dir}{sample}",
+        r2="{sample_dir}{sample}"
     output:
         r1out="{sample_dir}{sample}/{sample}_1_trimmed.fq.gz",
         r2out="{sample_dir}{sample}/{sample}_2_trimmed.fq.gz",
@@ -16,4 +16,4 @@ rule fastp:
     conda:
         "../envs/fastp_env.yaml"
     shell:
-        "fastp -i {input.r1} -I {input.r2} -o {output.r1out} -O {output.r2out} -h {output.html} -j {output.json}"
+        "fastp -i {input.r1}/*1*f*q.gz -I {input.r2}/*2*f*q.gz -o {output.r1out} -O {output.r2out} -h {output.html} -j {output.json}"
