@@ -9,23 +9,25 @@ min_version("6.0")
 #set config file:
 configfile: "../config/config.yaml"
 
+sample_dir = config["INPUT_PATH"]
+output_dir = config["OUTPUT_PATH"]
+phix_reference= config["PHIX_REF"]
+plant_reference= config["PLANT_REF"]
+
 
 ###############################################################################
 ###Execute main snakemake workflow###
 
-#Main rule:
+###Main rule:
 rule all:
     input:
-        expand("{sample_dir}{sample}/{sample}_{Rnum}_trimmed.fq.gz",
-        sample_dir=config["INPUT_PATH"],
-        sample = config["SAMPLES"],
-        Rnum=['1', '2'])
+        expand(output_dir + "spades/" + "{sample}/" + "contigs.fasta",
+        sample=config["SAMPLES"])
 
-#Rule 1: Quality control of input reads:
-#Open the module:
-module read_qc:
-    snakefile:
-        "rules/read_qc.smk"
+include: "rules/fastp.smk"
 
-#Run the module:
-use rule fastp from read_qc as read_qc_fastp
+include: "rules/remove_phix.smk"
+
+include: "rules/remove_plant.smk"
+
+include: "rules/metaspades.smk"
