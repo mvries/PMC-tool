@@ -1,4 +1,9 @@
 PARAMS:
+ SRA:
+  P: 4
+  M: 10000MB
+  B: 100MB
+  C: 1000MB
  FASTP:
   Q: 20
   N: 0
@@ -9,3 +14,15 @@ PARAMS:
   P: 4
  SPADES:
   P: 4
+
+SAMPLES:
+ SRR17254980
+
+
+OUTPUT_PATH:
+ ../Output/
+PHIX_REF:
+ ../../references/phix/phix.fasta
+PLANT_REF:
+ ../../references/plant/GCF_904849725.1_MorexV3_pseudomolecules_assembly_genomic.fna
+

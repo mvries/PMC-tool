@@ -1,4 +1,9 @@
 PARAMS:
+ SRA:
+  P: 4
+  M: 10000MB
+  B: 100MB
+  C: 1000MB
  FASTP:
   Q: 20
   N: 0
