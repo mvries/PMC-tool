@@ -9,7 +9,6 @@ min_version("6.0")
 #set config file:
 configfile: "../config/config.yaml"
 
-sample_dir = config["INPUT_PATH"]
 output_dir = config["OUTPUT_PATH"]
 phix_reference= config["PHIX_REF"]
 plant_reference= config["PLANT_REF"]
@@ -21,8 +20,10 @@ plant_reference= config["PLANT_REF"]
 ###Main rule:
 rule all:
     input:
-        expand(output_dir + "spades/" + "{sample}/" + "contigs.fasta",
+        expand(output_dir + "spades/" + "{sample}/",
         sample=config["SAMPLES"])
+
+include: "rules/sample_download.smk"
 
 include: "rules/fastp.smk"
 
