@@ -1,11 +1,37 @@
 PARAMS:
+ SRA:
+  P: 8
+  M: 10000MB
+  B: 100MB
+  C: 1000MB
  FASTP:
   Q: 20
   N: 0
   E: 20
-  P: 4
+  P: 8
  BOWTIE2:
   S: --very-sensitive
-  P: 4
+  P: 8
  SPADES:
-  P: 4
+  P: 32
+  M: 10000
+
+SAMPLES:
+ SRR17255025:
+ SRR17255037:
+ SRR17255076:
+ SRR17255083:
+ SRR17255087:
+ SRR17255092:
+ SRR17255001:
+ SRR17255002:
+ SRR17255003:
+ SRR17255004:
+
+OUTPUT_PATH:
+ /mnt/scratch/vries465/Pipeline_output/
+PHIX_REF:
+ ../Input/references/phix.fasta
+PLANT_REF:
+ ../Input/references/tomato.fasta
+

@@ -1,11 +1,17 @@
 PARAMS:
+ SRA:
+  P: 8
+  M: 10000MB
+  B: 100MB
+  C: 1000MB
  FASTP:
   Q: 20
   N: 0
   E: 20
-  P: 4
+  P: 8
  BOWTIE2:
   S: --very-sensitive
-  P: 4
+  P: 8
  SPADES:
-  P: 4
+  P: 32
+  M: 10000

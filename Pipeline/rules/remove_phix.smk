@@ -1,4 +1,4 @@
-#Rule to build the reference index:
+re	#Rule to build the reference index:
 rule bowtie_build_phix:
     params:
         P=config["PARAMS"]["BOWTIE2"]["P"]
@@ -21,11 +21,11 @@ rule bowtie_map_phix:
         P=config["PARAMS"]["BOWTIE2"]["P"],
         S=config["PARAMS"]["BOWTIE2"]["S"]
     input:
-        r1=f'{sample_dir}' + '{sample}' + '/{sample}_1_trimmed.fq.gz',
-        r2=f'{sample_dir}' + '{sample}' + '/{sample}_2_trimmed.fq.gz',
+        r1=f'{output_dir}' + 'sra_download/' + '{sample}/{sample}_1_trimmed.fq.gz',
+        r2=f'{output_dir}' + 'sra_download/' + '{sample}/{sample}_2_trimmed.fq.gz',
         index=f'{phix_reference}' + '.rev.1.bt2'
     output:
-        sam=temporary(sample_dir + "{sample}" + "/{sample}_phix_bt2.sam"),
+        sam=temporary(f'{output_dir}' + "sra_download/" + "{sample}/{sample}_phix_bt2.sam")
     conda:
         "../envs/bowtie2.yaml"
     shell:
@@ -37,11 +37,14 @@ rule remove_phix:
     params:
         P=config["PARAMS"]["BOWTIE2"]["P"]
     input:
-        sample_dir + "{sample}" + "/{sample}_phix_bt2.sam"
+        f'{output_dir}' + "sra_download/" + "{sample}/{sample}_phix_bt2.sam"
     output:
-        out1=temporary(sample_dir + "{sample}" + "/{sample}_phix_removed_1.fq.gz"),
-        out2=temporary(sample_dir + "{sample}" + "/{sample}_phix_removed_2.fq.gz")
+        bam1=temporary(f'{output_dir}' + "sra_download/" + "{sample}/{sample}_1.bam"),
+        bam2=temporary(f'{output_dir}' + "sra_download/" + "{sample}/{sample}_2.bam"),
+        sorted=temporary(f'{output_dir}' + "sra_download/" + "{sample}/{sample}_sorted.bam"),
+        out1=temporary(f'{output_dir}' + "sra_download/" + "{sample}/{sample}_phix_removed_1.fq.gz"),
+        out2=temporary(f'{output_dir}' + "sra_download/" + "{sample}/{sample}_phix_removed_2.fq.gz")
     conda:
         "../envs/bowtie2.yaml"
     shell:
-        "samtools view -@ {params.P} -bS {input} | samtools view -@ {params.P} -b -f 12 -F 256 | samtools sort -n -@ {params.P} | samtools fastq -@ {params.P} -1 {output.out1} -2 {output.out2}"
+        "samtools view -@ {params.P} -bS {input} -o {output.bam1} && samtools view {output.bam1} -@ {params.P} -b -f 12 -F 256 -o {output.bam2} && samtools sort {output.bam2} -n -@ {params.P} -o {output.sorted} && samtools fastq -N -@ {params.P} -1 {output.out1} -2 {output.out2} {output.sorted}"
