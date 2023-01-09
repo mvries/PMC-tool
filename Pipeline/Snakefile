@@ -20,7 +20,7 @@ plant_reference= config["PLANT_REF"]
 ###Main rule:
 rule all:
     input:
-        expand(output_dir + "spades/" + "{sample}/",
+        expand(f'{output_dir}' + "spades/" + "{sample}" + "/contigs.fasta",
         sample=config["SAMPLES"])
 
 include: "rules/sample_download.smk"

@@ -1,6 +1,6 @@
 #This is a python wrapper that controlls the entire workflow.
 #Running this script with the required inputs automatically performs analysis.
-#To use: Python3 PMC.py sample_file configfile phix.fasta plant.fasta output_dir/
+#To use: Python3 PMC.py sample_file configfile phix.fasta plant.fasta output_dir/ ncores
 
 #Import statements:
 from sys import argv
@@ -13,7 +13,7 @@ configfile = argv[2]
 phix = argv[3]
 plant = argv[4]
 output_dir = argv[5]
-
+cores = argv[6]
 
 
 #Reset config file for next run:
@@ -30,5 +30,5 @@ cmd = "conda config --set channel_priority strict"
 subprocess.check_call(cmd, shell=True)
 
 #Run the snekmake workflow:
-cmd = "snakemake --cores 4 --use-conda"
+cmd = "snakemake --cores " + str(cores) + " --use-conda"
 subprocess.check_call(cmd, shell=True)
