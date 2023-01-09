@@ -1,4 +1,4 @@
-#Rule to build the reference index:
+re	#Rule to build the reference index:
 rule bowtie_build_phix:
     params:
         P=config["PARAMS"]["BOWTIE2"]["P"]
@@ -39,9 +39,12 @@ rule remove_phix:
     input:
         f'{output_dir}' + "sra_download/" + "{sample}/{sample}_phix_bt2.sam"
     output:
+        bam1=temporary(f'{output_dir}' + "sra_download/" + "{sample}/{sample}_1.bam"),
+        bam2=temporary(f'{output_dir}' + "sra_download/" + "{sample}/{sample}_2.bam"),
+        sorted=temporary(f'{output_dir}' + "sra_download/" + "{sample}/{sample}_sorted.bam"),
         out1=temporary(f'{output_dir}' + "sra_download/" + "{sample}/{sample}_phix_removed_1.fq.gz"),
         out2=temporary(f'{output_dir}' + "sra_download/" + "{sample}/{sample}_phix_removed_2.fq.gz")
     conda:
         "../envs/bowtie2.yaml"
     shell:
-        "samtools view -@ {params.P} -bS {input} | samtools view -@ {params.P} -b -f 12 -F 256 | samtools sort -n -@ {params.P} | samtools fastq -N -@ {params.P} -1 {output.out1} -2 {output.out2}"
+        "samtools view -@ {params.P} -bS {input} -o {output.bam1} && samtools view {output.bam1} -@ {params.P} -b -f 12 -F 256 -o {output.bam2} && samtools sort {output.bam2} -n -@ {params.P} -o {output.sorted} && samtools fastq -N -@ {params.P} -1 {output.out1} -2 {output.out2} {output.sorted}"
