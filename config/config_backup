@@ -15,3 +15,5 @@ PARAMS:
  SPADES:
   P: 32
   M: 10000
+QUAST:
+  P: 8

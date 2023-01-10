@@ -12,4 +12,4 @@ rule metaspades:
     conda:
         "../envs/metaspades.yaml"
     shell:
-        "spades.py --meta -m {params.M} -t {params.P} -1 {input.r1} -2 {input.r2} -o {output_dir}/spades/{wildcards.sample}/"
+        "spades.py --meta -m {params.M} -t {params.P} -1 {input.r1} -2 {input.r2} -o {output_dir}spades/{wildcards.sample}/"
