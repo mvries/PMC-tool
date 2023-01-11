@@ -20,7 +20,7 @@ plant_reference= config["PLANT_REF"]
 ###Main rule:
 rule all:
     input:
-        expand(f'{output_dir}' + "Quast/" + "{sample}" + "/report.tsv",
+        expand(f'{output_dir}' + "Quast/" + "{sample}" + "/report.html",
         sample=config["SAMPLES"])
 
 include: "rules/sample_download.smk"
@@ -32,3 +32,5 @@ include: "rules/remove_phix.smk"
 include: "rules/remove_plant.smk"
 
 include: "rules/metaspades.smk"
+
+include: "rules/Quast.smk"
