@@ -19,3 +19,6 @@ PARAMS:
   P: 12
  MEGAHIT:
   P: 128
+  
+POOLS:
+ pool1:
