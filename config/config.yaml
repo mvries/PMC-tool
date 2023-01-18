@@ -17,11 +17,14 @@ PARAMS:
   M: 10000
  QUAST:
   P: 12
+<<<<<<< HEAD
  MEGAHIT:
   P: 128
   
 POOLS:
  pool1:
+=======
+>>>>>>> main
 
 SAMPLES:
  SRR17255025:
@@ -36,7 +39,11 @@ SAMPLES:
  SRR17255004:
 
 OUTPUT_PATH:
+<<<<<<< HEAD
  /mnt/scratch/vries465/Pipeline_output/
+=======
+ /mnt/LTR_userdata/vries465/Pipeline_output/
+>>>>>>> main
 PHIX_REF:
  ../../Input/references/phix.fasta
 PLANT_REF:

@@ -1,0 +1,36 @@
+#This is the master snakemake file.
+#To run the workflow: snakemake --cores "ncores" "sample_dir/" "outdir/"
+#The following structure of input directories is needed: [samples]/[sample]/#.fq
+
+#Import statements:
+from snakemake.utils import min_version
+min_version("6.0")
+
+#set config file:
+configfile: "../config/config.yaml"
+
+output_dir = config["OUTPUT_PATH"]
+phix_reference= config["PHIX_REF"]
+plant_reference= config["PLANT_REF"]
+
+
+###############################################################################
+###Execute main snakemake workflow###
+
+###Main rule:
+rule all:
+    input:
+        expand(f'{output_dir}' + "Quast/" + "{sample}" + "/report.html",
+        sample=config["SAMPLES"])
+
+include: "rules/sample_download.smk"
+
+include: "rules/fastp.smk"
+
+include: "rules/remove_phix.smk"
+
+include: "rules/remove_plant.smk"
+
+include: "rules/metaspades.smk"
+
+include: "rules/Quast.smk"
