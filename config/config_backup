@@ -17,11 +17,8 @@ PARAMS:
   M: 10000
  QUAST:
   P: 12
-<<<<<<< HEAD
  MEGAHIT:
   P: 128
-  
+
 POOLS:
  pool1:
-=======
->>>>>>> main
