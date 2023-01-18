@@ -23,7 +23,7 @@ rule all:
         sample=config["SAMPLES"])
 
 #The following rules performs metaspades assemblies on individual samples:
-include: "rules/spades_assembly/metaspades.smk"
+include: "../rules/spades_assembly/metaspades.smk"
 
 #The following rule produces an assemblie quality report using metaQUAST:
-include: "rules/spades_assembly/Quast.smk"
+include: "../rules/spades_assembly/Quast.smk"

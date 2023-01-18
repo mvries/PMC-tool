@@ -3,7 +3,9 @@ rule pool_reads:
     input:
         f'{output_dir}' + "Pools/{pool}"
     output:
-        fw=temporary(f'{output_dir}' + "Pools/{pool}/pooled_reads_1.fq.gz"),
-        rv=temporary(f'{output_dir}' + "Pools/{pool}/pooled_reads_2.fq.gz")
+        fw=temporary(f'{output_dir}' + "Pools/{pool}/pooled_reads_1.fq"),
+        rv=temporary(f'{output_dir}' + "Pools/{pool}/pooled_reads_2.fq"),
+        fw_zip=temporary(f'{output_dir}' + "Pools/{pool}/pooled_reads_1.fq.gz"),
+        rv_zip=temporary(f'{output_dir}' + "Pools/{pool}/pooled_reads_2.fq.gz")
     shell:
-        "cat {input}/*/*_1*.f*q.* > {output.fw} && cat {input}/*/*_2*.f*q.* > {output.rv}"
+        "zcat {input}/*/*_1*.f*q.* > {output.fw} && gzip -k {output.fw} && zcat {input}/*/*_2*.f*q.* > {output.rv} && gzip -k {output.rv}"

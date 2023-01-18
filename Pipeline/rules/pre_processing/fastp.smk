@@ -21,6 +21,6 @@ rule fastp:
         html=f'{output_dir}' + "fastp_qc/{sample}/" + '{sample}.html',
         json=f'{output_dir}' + "fastp_qc/{sample}/" + '{sample}.json'
     conda:
-        "../envs/fastp_env.yaml"
+        "../../envs/fastp_env.yaml"
     shell:
         "fastp -w {params.P} -q {params.Q} -n {params.N} -e {params.E} -i {input.r1} -I {input.r2} -o {output.r1out} -O {output.r2out} -h {output.html} -j {output.json}"

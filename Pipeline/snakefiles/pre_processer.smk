@@ -18,17 +18,17 @@ plant_reference= config["PLANT_REF"]
 ###Main rule:
 rule all:
     input:
-        expand(f'{output_dir}' + "sra_download/" + "{sample}/{sample}_plant_bt2.sam",
+        expand(f'{output_dir}' + "bowtie2/plant/" + "{sample}/{sample}_plant_removed_1.fq.gz",
         sample=config["SAMPLES"])
 
 #The following rule downloads samples from the sequence read archive:
-include: "rules/pre_processing/sample_download.smk"
+include: "../rules/pre_processing/sample_download.smk"
 
 #The following rule is used to perform quality control of input reads with fastp:
-include: "rules/pre_processing/fastp.smk"
+include: "../rules/pre_processing/fastp.smk"
 
 #The following rule uses bowtie2 to remove phix contamination:
-include: "rules/pre_processing/remove_phix.smk"
+include: "../rules/pre_processing/remove_phix.smk"
 
 #The following rule uses bowtie2 to remove host plant contamination:
-include: "rules/pre_processing/remove_plant.smk"
+include: "../rules/pre_processing/remove_plant.smk"

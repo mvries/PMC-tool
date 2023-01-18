@@ -19,11 +19,11 @@ plant_reference= config["PLANT_REF"]
 ###Main rule:
 rule all:
     input:
-        expand(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs.fa",
+        expand(f'{output_dir}' + "MEGAHIT/{pool}/",
         pool=config["POOLS"])
 
 #The following rule is used to pool the reads:
-include: "rules/pool_reads.smk"
+include: "../rules/pool_reads.smk"
 
 #The followiung rule is used to assemble the pooled reads with MEGAHIT:
-include: "rules/megahit.smk"
+include: "../rules/megahit.smk"

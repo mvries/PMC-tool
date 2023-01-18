@@ -7,7 +7,7 @@ rule download_sample:
         B=config["PARAMS"]["SRA"]["B"],
         C=config["PARAMS"]["SRA"]["C"]
     conda:
-        "../envs/sra.yaml"
+        "../../envs/sra.yaml"
     output:
         r1=temporary(f'{output_dir}' + "sra_download/" + "{sample}/{sample}_1.fastq.gz"),
         r2=temporary(f'{output_dir}' + "sra_download/" + "{sample}/{sample}_2.fastq.gz")

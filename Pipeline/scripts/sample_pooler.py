@@ -16,22 +16,24 @@ def make_pools(input_dir, configfile, read_depth):
     #Make list of samples:
     sample_list = glob.glob(input_dir + 'bowtie2/plant/*')
     #Loop over the samples (extract id and read count):
+    print("Counting reads:")
     for sample in sample_list:
         #Extract ID:
         sample_id = sample.split('/')[-1]
         #Count forward reads:
         cmd = "zcat " + sample + "/" + "*_1* | wc -l"
-        fw_count_full = subprocess.check_output(cmd, shell=True)
-        fw_count_reads = fw_count_full / 4
+        fw_count_full = int(subprocess.check_output(cmd, shell=True))
+        fw_count_reads = int(fw_count_full) / 4
         #Count reverse reads:
         cmd = "zcat " + sample + "/" + "*_2* | wc -l"
-        rv_count_full = subprocess.check_output(cmd, shell=True)
-        rv_count_reads = fw_count_full / 4
+        rv_count_full = int(subprocess.check_output(cmd, shell=True))
+        rv_count_reads = int(rv_count_full) / 4
         #Calculate total reads for the sample:
-        Total_reads_sample = fw_count_reads + rv_count_reads
+        Total_reads_sample = int(fw_count_reads + rv_count_reads)
         #Add sample and read count to the dict:
         size_dict[sample_id] = Total_reads_sample
-
+        print(sample_id + " has " + str(Total_reads_sample) + " reads.")
+    
     #Loop over the dictionary and split the samples into pools:
     #Counter to keep track of pool size:
     pool_size = 0
@@ -40,27 +42,35 @@ def make_pools(input_dir, configfile, read_depth):
     #List to pool ... the pools
     pool_list = []
     for sample, size in size_dict.items():
+        print("pooling " + str(sample) + " of size " + str(size))
         Pool.append(sample)
         pool_size += size
-        if pool_size => read_depth:
-            pool_list.append(pool)
+        print("total pool size " + str(pool_size))
+        if pool_size >= read_depth:
+            pool_list.append(Pool)
             Pool = []
             pool_size = 0
-        else:
-            Pool = Pool
+    if len(Pool) > 0:
+        pool_list.append(Pool)
+     
 
     #The next step is looping over the pool list and making the directories:
     #Declare a pool number variable to assist in writing the directories needed:
     print("Pooling done! " + str(len(pool_list)) + " pool(s) were made" )
     print("Writing pools to directories, this may also take some time...")
     pool_number = 0
+    cmd = "mkdir " + input_dir + "Pools/"
+    subprocess.check_call(cmd, shell=True)
     for pool in pool_list:
         pool_number += 1
-        cmd = "mkdir " + input_dir + " Pools/pool" + str(pool_number)
+        cmd = "mkdir " + input_dir + "Pools/pool" + str(pool_number)
         subprocess.check_call(cmd, shell=True)
         for sample in pool:
-        cmd = "mv " + input_dir + "bowtie2/plant/" + sample + ' ' + input_dir + 'Pools/pool' + str(pool_number) + '/'
-        subprocess.check_call(cmd, shell=True)
+            cmd = "mkdir " + input_dir + "Pools/pool" + str(pool_number) + "/" + sample
+            subprocess.check_call(cmd, shell=True)
+            cmd = "mv " + input_dir + "bowtie2/plant/" + sample + '/* ' + input_dir + 'Pools/pool' + str(pool_number) + '/' + sample + "/"
+            subprocess.check_call(cmd, shell=True)
+        print("Pool " + str(pool_number) + " written.")
 
     #The final step is updating the configfile so that snakemake can use them:
     print("Writing done, updating configfile...")
