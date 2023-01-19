@@ -33,20 +33,8 @@ print("atype: " + atype)
 #Establish path to the snakemake config file:
 configfile = "../config/config.yaml"
 
-#Reset config file for next run (This is a safety measure in case of crash):
-cmd = "rm " + configfile
-subprocess.check_call(cmd, shell=True)
-cmd = "cp ../config/config_backup " + configfile
 
-#State directories and files needed:
-sample_file = argv[1]
-configfile = argv[2]
-phix = argv[3]
-plant = argv[4]
-output_dir = argv[5]
-cores = argv[6]
-
-
+"""
 #Reset config file for next run:
 cmd = "rm ../config/config.yaml"
 subprocess.check_call(cmd, shell=True)
@@ -55,6 +43,7 @@ subprocess.check_call(cmd, shell=True)
 
 #Use the make_config script to prepare the config file for execution:
 make_config.make_config(sample_file, configfile, phix, plant, output_dir)
+"""
 
 #Prepare conda:
 cmd = "conda config --set channel_priority strict"
