@@ -2,6 +2,9 @@
 #To use the script: python3 sample_pooler.py input_dir/ configfile read read_depth
 #Read depth = total number of reads desired per pool.
 
+#Note: This scripts contains quite a few hardcoded directories; do not be afraid!
+#These directories are created as a core part of the pipeline.
+
 #Import statements:
 from sys import argv
 import subprocess
@@ -33,7 +36,7 @@ def make_pools(input_dir, configfile, read_depth):
         #Add sample and read count to the dict:
         size_dict[sample_id] = Total_reads_sample
         print(sample_id + " has " + str(Total_reads_sample) + " reads.")
-    
+
     #Loop over the dictionary and split the samples into pools:
     #Counter to keep track of pool size:
     pool_size = 0
@@ -52,7 +55,7 @@ def make_pools(input_dir, configfile, read_depth):
             pool_size = 0
     if len(Pool) > 0:
         pool_list.append(Pool)
-     
+
 
     #The next step is looping over the pool list and making the directories:
     #Declare a pool number variable to assist in writing the directories needed:
