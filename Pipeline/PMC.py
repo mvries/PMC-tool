@@ -77,10 +77,9 @@ else:
     sample_pooler.make_pools(output_dir, configfile, 1000000000)
     """
     #Make directorie for megahit output:
+    """
     cmd = "mkdir " + str(output_dir) + "MEGAHIT"
     subprocess.check_call(cmd, shell=True)
+    """
     cmd = "snakemake --cores " + str(cores) + " --use-conda " + "--snakefile snakefiles/co_assembly.smk"
     subprocess.check_call(cmd, shell=True)
-#Run the snekmake workflow:
-cmd = "snakemake --cores " + str(cores) + " --use-conda"
-subprocess.check_call(cmd, shell=True)
