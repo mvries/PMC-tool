@@ -2,6 +2,8 @@
 rule pool_reads:
     input:
         f'{output_dir}' + "Pools/{pool}"
+    threads:
+        1
     output:
         fw=temporary(f'{output_dir}' + "Pools/{pool}/pooled_reads_1.fq"),
         rv=temporary(f'{output_dir}' + "Pools/{pool}/pooled_reads_2.fq"),

@@ -23,7 +23,7 @@ rule all:
         pool=config["POOLS"])
 
 #The following rule is used to pool the reads:
-include: "../rules/pool_reads.smk"
+include: "../rules/megahit_assembly/pool_reads.smk"
 
 #The followiung rule is used to assemble the pooled reads with MEGAHIT:
-include: "../rules/megahit.smk"
+include: "../rules/megahit_assembly/megahit.smk"

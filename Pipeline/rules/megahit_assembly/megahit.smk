@@ -7,6 +7,6 @@ rule megahit:
     output:
         directory(f'{output_dir}' + "MEGAHIT/{pool}/")
     conda:
-        "../envs/megahit.yaml"
+        "../../envs/megahit.yaml"
     shell:
         "heaptrack -o {output_dir}heaptrack megahit -f -m 0.9 -t {params.P} -1 {input.fw} -2 {input.rv} -o {output_dir}MEGAHIT/{wildcards.pool} --out-prefix {wildcards.pool}"
