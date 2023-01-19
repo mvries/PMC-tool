@@ -5,7 +5,7 @@ rule megahit:
         fw=f'{output_dir}' + "Pools/{pool}/pooled_reads_1.fq.gz",
         rv=f'{output_dir}' + "Pools/{pool}/pooled_reads_2.fq.gz"
     output:
-        f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs.fa")
+        f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs.fa"
     conda:
         "../../envs/megahit.yaml"
     shell:
