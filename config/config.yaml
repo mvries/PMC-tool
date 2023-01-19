@@ -23,7 +23,6 @@ PARAMS:
 POOLS:
  pool1:
 
-
 SAMPLES:
  SRR17255025:
  SRR17255037:
@@ -38,8 +37,6 @@ SAMPLES:
 
 OUTPUT_PATH:
  /mnt/scratch/vries465/Pipeline_output/
-
- /mnt/LTR_userdata/vries465/Pipeline_output/
 
 PHIX_REF:
  ../../Input/references/phix.fasta
