@@ -4,7 +4,7 @@ rule Quast_pools:
     params:
         P=config["PARAMS"]["QUAST"]["P"]
     input:
-        f'{output_dir}' + "MEGAHIT/" + "{pool}" + "/{pool}.contigs.fasta"
+        f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs.fa"
     output:
         f'{output_dir}' + "Quast/" + "{pool}" + "/report.html"
     conda:
