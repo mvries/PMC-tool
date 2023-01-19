@@ -8,6 +8,6 @@ rule Quast:
     output:
         f'{output_dir}' + "Quast/" + "{sample}" + "/report.html"
     conda:
-        "../envs/Quast.yaml"
+        "../../envs/Quast.yaml"
     shell:
         "metaquast --max-ref-number 0 -t {params.P} -o {output_dir}Quast/{wildcards.sample} {input}"

@@ -10,6 +10,6 @@ rule metaspades:
     output:
         contigs=f'{output_dir}' + "spades/" + "{sample}" + "/contigs.fasta"
     conda:
-        "../envs/metaspades.yaml"
+        "../../envs/metaspades.yaml"
     shell:
         "spades.py --meta -m {params.M} -t {params.P} -1 {input.r1} -2 {input.r2} -o {output_dir}spades/{wildcards.sample}/"
