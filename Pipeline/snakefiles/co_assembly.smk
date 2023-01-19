@@ -19,7 +19,7 @@ plant_reference= config["PLANT_REF"]
 ###Main rule:
 rule all:
     input:
-        expand(f'{output_dir}' + "MEGAHIT/{pool}/",
+        expand(f'{output_dir}' + "Quast/" + "{pool}" + "/report.html",
         pool=config["POOLS"])
 
 #The following rule is used to pool the reads:
@@ -27,3 +27,6 @@ include: "../rules/megahit_assembly/pool_reads.smk"
 
 #The followiung rule is used to assemble the pooled reads with MEGAHIT:
 include: "../rules/megahit_assembly/megahit.smk"
+
+#Run the rule that performs QUAST quality assesment of the megahit assembly:
+include: "../rules/megahit_assembly/Quast_pools.smk"
