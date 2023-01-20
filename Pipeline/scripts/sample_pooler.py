@@ -1,5 +1,4 @@
 #This script is used to pool the input samples to a desired maximum read count per pool.
-#To use the script: python3 sample_pooler.py input_dir/ configfile read read_depth
 #Read depth = total number of reads desired per pool.
 
 #Note: This scripts contains quite a few hardcoded directories; do not be afraid!
