@@ -29,4 +29,4 @@ rule make_assembly_index:
     conda:
         "../../envs/bowtie2.yaml"
     shell:
-        "gunzip -k -f {input.zipped} > {output.unzipped} && bowtie2-build -p {params.P} {output.unzipped} {output.unzipped}"
+        "gunzip -k -f {input.zipped} > {output.unzipped} && bowtie2-build --threads {params.P} {output.unzipped} {output.unzipped}"
