@@ -2,7 +2,7 @@ rule make_catalogue:
     threads:
         1
     input:
-        contigs=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs.fa",
+        contigs=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs_filter.fa",
         report=f'{output_dir}' + "Quast/" + "{pool}" + "/report.html"
     output:
         temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna.gz")
@@ -47,7 +47,7 @@ rule map_to_assembly:
         i4=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.4.bt2',
         rev1=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.rev.1.bt2',
         rev2=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.rev.2.bt2',
-        contigs=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs.fa"
+        contigs=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs_filter.fa"
     output:
         sam=temporary(f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.sam")
     conda:
