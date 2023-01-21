@@ -5,7 +5,7 @@ channels:
 dependencies:
   - _libgcc_mutex=0.1=main
   - _openmp_mutex=5.1=1_gnu
-  - bowtie2=2.2.4=py37hc9558a2_5
+  - bowtie2=2.5.0=py37hc9558a2_5
   - ca-certificates=2022.10.11=h06a4308_0
   - certifi=2022.9.24=py37h06a4308_0
   - gdbm=1.18=hd4cb3f1_4
