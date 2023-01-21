@@ -5,8 +5,6 @@ rule pool_reads:
     threads:
         8
     output:
-        fw_unzip=temporary(f'{output_dir}' + "Pools/{pool}/unzipped_reads_1"),
-        rv_unzip=temporary(f'{output_dir}' + "Pools/{pool}/unzipped_reads_2"),
         fw=temporary(f'{output_dir}' + "Pools/{pool}/pooled_reads_1.fq"),
         rv=temporary(f'{output_dir}' + "Pools/{pool}/pooled_reads_2.fq")
     shell:
