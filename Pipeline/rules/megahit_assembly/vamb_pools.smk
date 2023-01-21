@@ -18,8 +18,8 @@ rule make_assembly_index:
         config["PARAMS"]["BOWTIE2"]["P"]
     input:
         zipped=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna.gz",
-        unzipped=temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna")
     output:
+        unzipped=temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna"),
         temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.1.bt2'),
         temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.2.bt2'),
         temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.3.bt2'),
@@ -29,4 +29,4 @@ rule make_assembly_index:
     conda:
         "../../envs/bowtie2.yaml"
     shell:
-        "gunzip -k -f {input.zip} > {input.unzipped} && bowtie2-build {input.unzipped} {input.unzipped}"
+        "gunzip -k -f {input.zip} > {output.unzipped} && bowtie2-build {input.unzipped} {input.unzipped}"
