@@ -12,6 +12,7 @@ PARAMS:
  BOWTIE2:
   S: --very-sensitive
   P: 16
+  M: 5
  SPADES:
   P: 32
   M: 10000
