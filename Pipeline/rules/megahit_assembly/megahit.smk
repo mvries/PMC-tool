@@ -1,4 +1,6 @@
 rule megahit:
+    threads:
+        1
     params:
         P=config["PARAMS"]["MEGAHIT"]["P"]
     input:

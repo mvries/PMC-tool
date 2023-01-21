@@ -19,7 +19,7 @@ plant_reference= config["PLANT_REF"]
 ###Main rule:
 rule all:
     input:
-        expand(f'{output_dir}' + "Quast/" + "{pool}" + "/report.html",
+        expand(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna.gz",
         pool=config["POOLS"])
 
 
@@ -31,3 +31,6 @@ rule all:
 
 #Run the rule that performs QUAST quality assesment of the megahit assembly:
 include: "../rules/megahit_assembly/Quast_Pools.smk"
+
+#un the rules that are needed to perform binnign with vamb:
+include: "../rules/megahit_assembly/vamb_pools.smk"
