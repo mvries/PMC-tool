@@ -1,3 +1,13 @@
+rule filter_contigs:
+    threads:
+        1
+    input:
+        f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs.fa"
+    output:
+        f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs_filter.fa"
+    shell:
+        "python3 ../../scripts/contig_filter_megahit.py {input} {output} 500"
+
 rule make_catalogue:
     threads:
         1
