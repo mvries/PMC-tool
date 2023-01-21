@@ -3,5 +3,6 @@ channels:
   - bioconda
   - defaults
   - conda-forge
+  - anaconda
 dependencies:
   - bowtie2=2.5.0
