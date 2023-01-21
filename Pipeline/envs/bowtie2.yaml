@@ -5,4 +5,4 @@ channels:
   - conda-forge
 dependencies:
   - bowtie2=2.5.0
-  - libgcc-ng
+  - conda-forge::libgcc-ng
