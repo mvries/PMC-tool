@@ -8,15 +8,15 @@ from sys import argv
 def filter_contigs(contig_file, output_file, contig_length):
     with open(contig_file, "r") as contigs:
         with open(output_file, "a") as output:
-            writer == 0
+            writer = 0
             for line in contigs:
                 if line[0] == ">":
                     length = line.split(" ")[-1]
                     length_int = length.split("=")[-1]
                     if length_int >= contig_length:
-                        writer == 1
+                        writer = 1
                     else:
-                        writer == 0
+                        writer = 0
                 else:
                     writer = writer
                 if writer == 1:
