@@ -20,12 +20,12 @@ rule make_assembly_index:
         zipped=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna.gz",
     output:
         unzipped=temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna"),
-        temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.1.bt2'),
-        temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.2.bt2'),
-        temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.3.bt2'),
-        temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.4.bt2'),
-        temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.rev.1.bt2'),
-        temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.rev.2.bt2')
+        i1=temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.1.bt2'),
+        i2=temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.2.bt2'),
+        i3=temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.3.bt2'),
+        i4=temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.4.bt2'),
+        rev1=temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.rev.1.bt2'),
+        rev2=temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.rev.2.bt2')
     conda:
         "../../envs/bowtie2.yaml"
     shell:
