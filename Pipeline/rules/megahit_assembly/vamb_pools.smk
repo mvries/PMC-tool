@@ -4,7 +4,7 @@ rule filter_contigs:
     input:
         f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs.fa"
     output:
-        f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs_filter.fa"
+        temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs_filter.fa")
     shell:
         "python3 scripts/contig_filter_megahit.py {input} {output} 500"
 
