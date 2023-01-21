@@ -19,7 +19,7 @@ plant_reference= config["PLANT_REF"]
 ###Main rule:
 rule all:
     input:
-        expand(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna.gz" + '.rev.1.bt2',
+        expand(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.1.bt2',
         pool=config["POOLS"])
 
 
