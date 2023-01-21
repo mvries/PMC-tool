@@ -1,4 +1,6 @@
 rule make_catalogue:
+    threads:
+        1
     input:
         contigs=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs.fa",
         report=f'{output_dir}' + "Quast/" + "{pool}" + "/report.html"
