@@ -3,11 +3,9 @@ rule pool_reads:
     input:
         f'{output_dir}' + "Pools/{pool}"
     threads:
-        1
+        8
     output:
         fw=temporary(f'{output_dir}' + "Pools/{pool}/pooled_reads_1.fq"),
-        rv=temporary(f'{output_dir}' + "Pools/{pool}/pooled_reads_2.fq"),
-        fw_zip=temporary(f'{output_dir}' + "Pools/{pool}/pooled_reads_1.fq.gz"),
-        rv_zip=temporary(f'{output_dir}' + "Pools/{pool}/pooled_reads_2.fq.gz")
+        rv=temporary(f'{output_dir}' + "Pools/{pool}/pooled_reads_2.fq")
     shell:
-        "zcat {input}/*/*_1*.f*q.* > {output.fw} && gzip -k {output.fw} && zcat {input}/*/*_2*.f*q.* > {output.rv} && gzip -k {output.rv}"
+        "unpigz -k -p 8 {input}/*/*_1*.f*q.* | cat > {output.fw} && unpigz -k -p 8 {input}/*/*_2*.f*q.* | cat > {output.rv}"
