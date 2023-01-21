@@ -38,9 +38,9 @@ rule map_to_assembly:
     threads:
         config["PARAMS"]["BOWTIE2"]["P"]
     input:
-        catalogue=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna"
+        catalogue=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna",
         r1=f'{output_dir}' + "Pools/{pool}/pooled_reads_1.fq",
-        r2=f'{output_dir}' + "Pools/{pool}/pooled_reads_2.fq"
+        r2=f'{output_dir}' + "Pools/{pool}/pooled_reads_2.fq",
         i1=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.1.bt2',
         i2=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.2.bt2',
         i3=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna" + '.3.bt2',
