@@ -10,4 +10,4 @@ rule pool_reads:
         fw=temporary(f'{output_dir}' + "Pools/{pool}/pooled_reads_1.fq"),
         rv=temporary(f'{output_dir}' + "Pools/{pool}/pooled_reads_2.fq")
     shell:
-        "unpigz -c -f -k -p 8 {input}/*/*_1*.f*q.* > {output.fw_unzip} && cat {output.fw_unzip} > {output.fw} && unpigz -c -f -k -p 8 {input}/*/*_2*.f*q.* > {output.rv_unzip} && cat {output.rv_unzip} > {output.rv}"
+        "unpigz -c -f -k -p 8 {input}/*/*_1*.f*q.* | cat > {output.fw} && unpigz -c -f -k -p 8 {input}/*/*_2*.f*q.* | cat > {output.rv}"
