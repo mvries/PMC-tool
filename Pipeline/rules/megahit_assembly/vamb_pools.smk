@@ -132,7 +132,7 @@ rule paste_abundances:
         cut13=f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.raw_13.jgi",
         cut45=f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.raw_45.jgi"
     output:
-        f'{output_dir}' + "bowtie2/assembly/" + "{pool}/jgi.abundance.dat"
+        f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}.jgi.abundance.dat"
     log:
         "log/jgi/paste_abundances.log"
     shell:

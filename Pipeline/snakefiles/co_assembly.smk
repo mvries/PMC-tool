@@ -19,7 +19,7 @@ plant_reference= config["PLANT_REF"]
 ###Main rule:
 rule all:
     input:
-        expand(f'{output_dir}' + "bowtie2/assembly/" + "{pool}/jgi.abundance.dat",
+        expand(f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}.jgi.abundance.dat",
         pool=config["POOLS"])
 
 
