@@ -149,10 +149,10 @@ rule vamb:
         f'{output_dir}' + "vamb/" + "{pool}/mask.npz",
         f'{output_dir}' + "vamb/" + "{pool}/tnf.npz"
     params:
-        P=config["PARAMS"]["BOWTIE2"]["P"],
-        O=config["PARAMS"]["BOWTIE2"]["O"],
-        M=config["PARAMS"]["BOWTIE2"]["M"],
-        MIN=config["PARAMS"]["BOWTIE2"]["MIN"]
+        P=config["PARAMS"]["VAMB"]["P"],
+        O=config["PARAMS"]["VAMB"]["O"],
+        M=config["PARAMS"]["VAMB"]["M"],
+        MIN=config["PARAMS"]["VAMB"]["MIN"]
     threads:
         config["PARAMS"]["BOWTIE2"]["P"]
     conda:
