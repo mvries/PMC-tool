@@ -75,7 +75,7 @@ rule sort_bam:
     input:
         f'{output_dir}' + "minimap2/" + "{pool}/{pool}_mm2.bam"
     output:
-        temporary(f'{output_dir}' + "minimap2/" + "{pool}/{pool}_mm2_sorted.bam")
+        f'{output_dir}' + "minimap2/" + "{pool}/{pool}_mm2_sorted.bam"
     conda:
         "../../envs/bowtie2.yaml"
     shell:
@@ -107,7 +107,7 @@ rule cut_column4to5:
     threads:
         1
     input:
-        f'{output_dir}' + "minimap2/" + "{pool}/{pool}_mm2_13.raw.jgi"
+        f'{output_dir}' + "minimap2/" + "{pool}/{pool}_mm2.raw.jgi"
     output:
         temporary(f'{output_dir}' + "minimap2/" + "{pool}/{pool}_mm2_45.raw.jgi")
     shell:
