@@ -78,3 +78,17 @@ rule make_bam:
         "../../envs/bowtie2.yaml"
     shell:
         "samtools view -F 3584 -b --threads {params.P} {input.sam} > {output.bam}"
+
+rule sort_bam:
+    params:
+        P=config["PARAMS"]["BOWTIE2"]["P"]
+    threads:
+        config["PARAMS"]["BOWTIE2"]["P"]
+    input:
+        f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.bam"
+    output:
+        f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2_sorted.bam"
+    conda:
+        "../../envs/bowtie2.yaml"
+    shell:
+        "samtools sort {input} --threads {params.P} -m 10G -o {output}"
