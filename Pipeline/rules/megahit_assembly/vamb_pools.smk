@@ -132,6 +132,30 @@ rule paste_abundances:
         cut13=f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.raw_13.jgi",
         cut45=f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.raw_45.jgi"
     output:
-        f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}.jgi.abundance.dat"
+        temporary(f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}.jgi.abundance.dat")
     shell:
         "paste {input.cut13} {input.cut45} > {output}"
+
+rule vamb:
+    input:
+        jgi=f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}.jgi.abundance.dat",
+        contigs=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna"
+    output:
+        f'{output_dir}' + "vamb/" + "{pool}/clusters.tsv",
+        f'{output_dir}' + "vamb/" + "{pool}/latent.npz",
+        f'{output_dir}' + "vamb/" + "{pool}/lengths.npz",
+        f'{output_dir}' + "vamb/" + "{pool}/log.txt",
+        f'{output_dir}' + "vamb/" + "{pool}/model.pt",
+        f'{output_dir}' + "vamb/" + "{pool}/mask.npz",
+        f'{output_dir}' + "vamb/" + "{pool}/tnf.npz"
+    params:
+        P=config["PARAMS"]["BOWTIE2"]["P"],
+        O=config["PARAMS"]["BOWTIE2"]["O"],
+        M=config["PARAMS"]["BOWTIE2"]["M"],
+        MIN=config["PARAMS"]["BOWTIE2"]["MIN"]
+    threads:
+        config["PARAMS"]["BOWTIE2"]["P"]
+    conda:
+        "../../envs/vamb.yaml"
+    shell:
+        "vamb --outdir {output_dir}vamb/{pool}/ --fasta {input.contigs} --jgi {input.jgi} -o {params.O} -m {params.M} --minfasta {params.MIN}"

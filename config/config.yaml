@@ -19,6 +19,12 @@ PARAMS:
   P: 12
  MEGAHIT:
   P: 128
+ VAMB:
+  P: 128
+  O: C
+  M: 500
+  MIN: 500000
+
 
 POOLS:
  pool1:
