@@ -31,4 +31,5 @@ General structure of this Repo:
 └── resources
 
 Needs fixing:
+conda environment for SRA toolkit needs to be configured for the first run.
 Conda environment for metabat2 expects libdeflate file to be made (Maybe include whole env?)
