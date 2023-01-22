@@ -134,4 +134,4 @@ rule paste_abundances:
     output:
         f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}.jgi.abundance.dat"
     shell:
-        "paste {input.column1to3} {input.data} > {output} 2>{log}"
+        "paste {input.cut13} {input.cut45} > {output}"
