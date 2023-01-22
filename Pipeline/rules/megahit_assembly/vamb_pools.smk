@@ -99,7 +99,7 @@ rule jgi:
     input:
         f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2_sorted.bam"
     output:
-        temporary(f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.raw.jgi")
+        f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.raw.jgi"
     conda:
         "../../envs/bowtie2.yaml"
     shell:
