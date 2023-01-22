@@ -158,5 +158,5 @@ rule vamb:
     conda:
         "../../envs/vamb.yaml"
     shell:
-        "rm -rf {output_dir}vamb/{wildcards.pool}/"
+        "rm -r {output_dir}vamb/{wildcards.pool}/;"
         "vamb --outdir {output_dir}vamb/{wildcards.pool}/ --fasta {input.contigs} --jgi {input.jgi} -o {params.O} -m {params.M} --minfasta {params.MIN}"
