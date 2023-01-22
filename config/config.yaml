@@ -26,7 +26,7 @@ PARAMS:
   MIN: 500000
  MINIMAP:
   P: 128
-  I: 100G 
+  K: 10000M 
 
 POOLS:
  pool1:

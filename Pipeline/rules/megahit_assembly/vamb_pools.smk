@@ -50,6 +50,7 @@ rule dict:
 rule map_to_assembly:
     params:
         P=config["PARAMS"]["MINIMAP"]["P"],
+        K=config["PARAMS"]["MINIMAP"]["K"]
     threads:
         config["PARAMS"]["MINIMAP"]["P"]
     input:
@@ -64,7 +65,7 @@ rule map_to_assembly:
     conda:
         "../../envs/minimap2.yaml"
     shell:
-        '''minimap2 -t {params.P} -ax sr {input.mmi} {input.r1} {input.r2} -N 5 | grep -v "^@" | cat {input.dict} - | samtools view -F 3584 -b - > {output} 2>{log}'''
+        '''minimap2 -t {params.P} -ax sr {input.mmi} {input.r1} {input.r2} -N 5 -K {input.K} | grep -v "^@" | cat {input.dict} - | samtools view -F 3584 -b - > {output} 2>{log}'''
 
 rule sort_bam:
     params:
