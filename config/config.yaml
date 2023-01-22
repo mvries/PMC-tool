@@ -28,7 +28,7 @@ PARAMS:
  MINIMAP:
   P: 32
   I: 500g
-  K: 15000M
+  K: 1500M
 
 
 POOLS:
