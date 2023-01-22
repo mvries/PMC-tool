@@ -65,7 +65,7 @@ rule map_to_assembly:
     conda:
         "../../envs/minimap2.yaml"
     shell:
-        '''minimap2 -t {params.P} -ax sr {input.mmi} {input.r1} {input.r2} -N 5 -K {input.K} | grep -v "^@" | cat {input.dict} - | samtools view -F 3584 -b - > {output} 2>{log}'''
+        '''minimap2 -t {params.P} -ax sr {input.mmi} {input.r1} {input.r2} -N 5 -K {params.K} | grep -v "^@" | cat {input.dict} - | samtools view -F 3584 -b - > {output} 2>{log}'''
 
 rule sort_bam:
     params:

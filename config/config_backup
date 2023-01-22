@@ -26,7 +26,8 @@ VAMB:
   M: 500
   MIN: 500000
  MINIMAP:
-  P: 128 
+  P: 128
+  K: 10000M  
 
 
 POOLS:
