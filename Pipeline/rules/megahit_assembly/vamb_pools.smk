@@ -101,6 +101,6 @@ rule jgi:
     output:
         f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.raw.jgi"
     conda:
-        "../../envs/bowtie2.yaml"
+        "../../envs/metabat2.yaml"
     shell:
         "jgi_summarize_bam_contig_depths --noIntraDepthVariance --outputDepth {output} {input}"
