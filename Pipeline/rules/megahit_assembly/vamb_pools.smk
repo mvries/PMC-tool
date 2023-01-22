@@ -73,7 +73,7 @@ rule make_bam:
     input:
         sam=f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.sam"
     output:
-        bam=f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.bam"
+        bam=temporary(f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.bam")
     conda:
         "../../envs/bowtie2.yaml"
     shell:
