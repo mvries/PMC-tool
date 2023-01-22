@@ -87,7 +87,7 @@ rule sort_bam:
     input:
         f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.bam"
     output:
-        f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2_sorted.bam"
+        temporary(f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2_sorted.bam")
     conda:
         "../../envs/bowtie2.yaml"
     shell:
