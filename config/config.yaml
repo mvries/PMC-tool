@@ -12,6 +12,7 @@ PARAMS:
  BOWTIE2:
   S: --very-sensitive
   P: 128
+  M: 5
  SPADES:
   P: 32
   M: 10000
@@ -25,7 +26,7 @@ PARAMS:
   M: 500
   MIN: 500000
  MINIMAP:
-  P: 128
+  P: 32
   I: 500g
   K: 15000M
 

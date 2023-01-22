@@ -11,7 +11,7 @@ PARAMS:
   P: 8
  BOWTIE2:
   S: --very-sensitive
-  P: 32
+  P: 128
   M: 5
  SPADES:
   P: 32
@@ -28,7 +28,7 @@ VAMB:
  MINIMAP:
   P: 128
   I: 500
-  K:
+  K: 15000M
 
 
 POOLS:
