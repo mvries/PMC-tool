@@ -29,3 +29,6 @@ General structure of this Repo:
 │   └── some-sheet.tsv
 ├── results
 └── resources
+
+Needs fixing:
+Conda environment for metabat2 expects libdeflate file to be made (Maybe include whole env?)
