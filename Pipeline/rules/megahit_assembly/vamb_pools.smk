@@ -99,8 +99,41 @@ rule jgi:
     input:
         f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2_sorted.bam"
     output:
-        f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.raw.jgi"
+        temporary(f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.raw.jgi")
     conda:
         "../../envs/metabat2.yaml"
     shell:
         "jgi_summarize_bam_contig_depths --noIntraDepthVariance --outputDepth {output} {input}"
+
+rule cut_column1to3:
+    threads:
+        1
+    input:
+        f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.raw.jgi"
+    output:
+        temporary(f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.raw_13.jgi")
+    shell:
+        "cut -f1-3 {input} > {output}"
+
+rule cut_column4to5:
+    threads:
+        1
+    input:
+        f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.raw.jgi"
+    output:
+        temporary(f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.raw_45.jgi")
+    shell:
+        "cut -f1-3 --complement {input} > {output}"
+
+rule paste_abundances:
+    threads:
+        1
+    input:
+        cut13=f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.raw_13.jgi",
+        cut45=f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.raw_45.jgi"
+    output:
+        f'{output_dir}' + "bowtie2/assembly/" + "{pool}/jgi.abundance.dat"
+    log:
+        "log/jgi/paste_abundances.log"
+    shell:
+        "paste {input.column1to3} {input.data} > {output} 2>{log}"
