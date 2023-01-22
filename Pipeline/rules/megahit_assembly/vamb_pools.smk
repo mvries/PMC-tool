@@ -149,9 +149,9 @@ rule vamb:
         f'{output_dir}' + "vamb/" + "{pool}/mask.npz",
         f'{output_dir}' + "vamb/" + "{pool}/tnf.npz"
     params:
-        P=config["PARAMS"]["BOWTIE2"]["P"]
-        O=config["PARAMS"]["BOWTIE2"]["O"]
-        M=config["PARAMS"]["BOWTIE2"]["M"]
+        P=config["PARAMS"]["BOWTIE2"]["P"],
+        O=config["PARAMS"]["BOWTIE2"]["O"],
+        M=config["PARAMS"]["BOWTIE2"]["M"],
         MIN=config["PARAMS"]["BOWTIE2"]["MIN"]
     threads:
         config["PARAMS"]["BOWTIE2"]["P"]
