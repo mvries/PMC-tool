@@ -92,3 +92,15 @@ rule sort_bam:
         "../../envs/bowtie2.yaml"
     shell:
         "samtools sort {input} --threads {params.P} -m 10G -o {output}"
+
+rule jgi:
+    threads:
+        1
+    input:
+        f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2_sorted.bam"
+    output:
+        temporary(f'{output_dir}' + "bowtie2/assembly/" + "{pool}/{pool}_bt2.raw.jgi")
+    conda:
+        "../../envs/bowtie2.yaml"
+    shell:
+        "jgi_summarize_bam_contig_depths --noIntraDepthVariance --outputDepth {output} {input}"
