@@ -158,4 +158,4 @@ rule vamb:
     conda:
         "../../envs/vamb.yaml"
     shell:
-        "vamb --outdir {output_dir}vamb/{pool}/ --fasta {input.contigs} --jgi {input.jgi} -o {params.O} -m {params.M} --minfasta {params.MIN}"
+        "vamb --outdir {output_dir}vamb/{wildcards.pool}/ --fasta {input.contigs} --jgi {input.jgi} -o {params.O} -m {params.M} --minfasta {params.MIN}"
