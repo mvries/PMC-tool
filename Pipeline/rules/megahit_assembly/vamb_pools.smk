@@ -159,6 +159,6 @@ rule checkm:
     threads:
         config["PARAMS"]["CHECKM"]["P"]
     conda:
-        "envs/checkm.yaml"
+        "../../envs/checkm.yaml"
     shell:
         "checkm lineage_wf -f checkm.results -t {params.P} -x fna {input} {output_dir}vamb/{wildcards.pool}"
