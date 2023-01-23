@@ -29,6 +29,8 @@ VAMB:
   P: 128
   I: 500
   K: 1500M
+ CHECKM:
+  P: 32
 
 
 POOLS:

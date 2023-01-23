@@ -29,6 +29,8 @@ PARAMS:
   P: 32
   I: 500g
   K: 1500M
+ CHECKM:
+  P: 32
 
 
 POOLS:

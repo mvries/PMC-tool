@@ -148,3 +148,17 @@ rule vamb:
     shell:
         "rm -r {output_dir}vamb/{wildcards.pool}/;"
         "vamb --outdir {output_dir}vamb/{wildcards.pool}/ --fasta {input.contigs} --jgi {input.jgi} -o {params.O} -m {params.M} --minfasta {params.MIN}"
+
+rule checkm:
+    input:
+        f'{output_dir}' + "vamb/" + "{pool}/clusters.tsv"
+    output:
+        f'{output_dir}' + "vamb/" + "{pool}/checkm.results"
+    params:
+        P=config["PARAMS"]["CHECKM"]["P"]
+    threads:
+        config["PARAMS"]["CHECKM"]["P"]
+    conda:
+        "envs/checkm.yaml"
+    shell:
+        "checkm lineage_wf -f checkm.results -t {params.P} -x fna {input} {output_dir}vamb/{wildcards.pool}"
