@@ -155,7 +155,7 @@ rule checkm:
     output:
         f'{output_dir}' + "vamb/" + "{pool}/checkm.results"
     params:
-        bins=f'{output_dir}' + "vamb/" + "{pool}/bins/
+        bins=f'{output_dir}' + "vamb/" + "{pool}/bins/",
         P=config["PARAMS"]["CHECKM"]["P"]
     threads:
         config["PARAMS"]["CHECKM"]["P"]
