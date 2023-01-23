@@ -162,4 +162,4 @@ rule checkm:
     conda:
         "../../envs/checkm.yaml"
     shell:
-        "checkm lineage_wf -f checkm.results -t {params.P} -x fna {params.bins} {output_dir}vamb/{wildcards.pool}"
+        "checkm lineage_wf -f {output} -t {params.P} -x fna {params.bins} {output_dir}vamb/{wildcards.pool}"
