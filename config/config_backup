@@ -31,3 +31,8 @@ PARAMS:
   K: 1500M
  CHECKM:
   P: 32
+ BBMAP:
+  #Numcores:
+  P: 32
+  #Desired kmer depth:
+  D: 100

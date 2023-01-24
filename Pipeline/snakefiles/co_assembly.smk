@@ -27,7 +27,7 @@ rule all:
 include: "../rules/megahit_assembly/pool_reads.smk"
 
 #The followiung rule is used to assemble the pooled reads with MEGAHIT:
-#include: "../rules/megahit_assembly/megahit.smk"
+include: "../rules/megahit_assembly/megahit.smk"
 
 #Run the rule that performs QUAST quality assesment of the megahit assembly:
 include: "../rules/megahit_assembly/Quast_Pools.smk"

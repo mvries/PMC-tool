@@ -18,7 +18,7 @@ plant_reference= config["PLANT_REF"]
 ###Main rule:
 rule all:
     input:
-        expand(f'{output_dir}' + "bowtie2/plant/" + "{sample}/{sample}_plant_removed_1.fq.gz",
+        expand(f'{output_dir}' + "bbmap/" + "{sample}/{sample}_normalized_1.fq.gz",
         sample=config["SAMPLES"])
 
 #The following rule downloads samples from the sequence read archive:
@@ -32,3 +32,6 @@ include: "../rules/pre_processing/remove_phix.smk"
 
 #The following rule uses bowtie2 to remove host plant contamination:
 include: "../rules/pre_processing/remove_plant.smk"
+
+#The following rules uses bbnorm function from bbmap to normalize fastq kmer depth:
+include: "../rules/pre_processing/bbnorm.smk"
