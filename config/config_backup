@@ -20,7 +20,7 @@ PARAMS:
   P: 12
  MEGAHIT:
   P: 128
-VAMB:
+ VAMB:
   P: 128
   O: C
   M: 500
@@ -31,7 +31,3 @@ VAMB:
   K: 1500M
  CHECKM:
   P: 32
-
-
-POOLS:
- pool1:
