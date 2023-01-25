@@ -12,4 +12,4 @@ rule download_sample:
         r1=temporary(f'{output_dir}' + "sra_download/" + "{sample}/{sample}_1.fastq.gz"),
         r2=temporary(f'{output_dir}' + "sra_download/" + "{sample}/{sample}_2.fastq.gz")
     shell:
-        "fasterq-dump --split-files {wildcards.sample}  -t /dev/shm/sra -c {params.C} -b {params.B} -e {params.P} -m {params.M} -O {output_dir}sra_download/{wildcards.sample}/ -p && gzip {output_dir}sra_download/{wildcards.sample}/*"
+        "fasterq-dump --split-files {wildcards.sample}  -t /dev/shm/sra -c {params.C} -b {params.B} -e {params.P} -m {params.M} -O {output_dir}sra_download/{wildcards.sample}/ -p && pigz --fast {output_dir}sra_download/{wildcards.sample}/*"
