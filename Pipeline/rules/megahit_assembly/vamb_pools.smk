@@ -6,7 +6,7 @@ rule filter_contigs:
     output:
         temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs_filter.fa")
     shell:
-        "python3 scripts/contig_filter_megahit.py {input} {output} 500"
+        "python3 scripts/contig_filter_megahit.py {input} {output} 1000"
 
 rule make_catalogue:
     threads:
@@ -15,15 +15,15 @@ rule make_catalogue:
         contigs=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs_filter.fa",
         report=f'{output_dir}' + "Quast/" + "{pool}" + "/report.html"
     output:
-        temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna.gz")
+        temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna")
     conda:
         "../../envs/vamb.yaml"
     shell:
-        "concatenate.py {output} {input.contigs}"
+        "concatenate.py {output} {input.contigs} -m 1000"
 
 rule index:
     input:
-        f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna.gz"
+        f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna"
     output:
         temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs.flt.mmi")
     params:
@@ -37,7 +37,7 @@ rule index:
 
 rule dict:
     input:
-        f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna.gz"
+        f'{output_dir}' + "MEGAHIT/{pool}/{pool}.catalogue.fna"
     output:
         temporary(f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs.flt.dict")
     threads:
@@ -59,7 +59,7 @@ rule map_to_assembly:
         r2=f'{output_dir}' + "Pools/{pool}/pooled_reads_2.fq",
         mmi=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs.flt.mmi"
     output:
-        temporary(f'{output_dir}' + "minimap2/" + "{pool}/{pool}_mm2.bam")
+        f'{output_dir}' + "minimap2/" + "{pool}/{pool}_mm2.bam"
     log:
         f'{output_dir}' + "minimap2/" + "{pool}/mm2.log"
     conda:
