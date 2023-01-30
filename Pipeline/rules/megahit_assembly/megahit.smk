@@ -1,6 +1,6 @@
 rule megahit:
     threads:
-        1
+        config["PARAMS"]["MEGAHIT"]["P"]
     params:
         P=config["PARAMS"]["MEGAHIT"]["P"]
     input:
@@ -11,4 +11,4 @@ rule megahit:
     conda:
         "../../envs/megahit.yaml"
     shell:
-        "megahit -f -m 0.9 -t {params.P} -1 {input.fw} -2 {input.rv} -o {output_dir}MEGAHIT/{wildcards.pool} --out-prefix {wildcards.pool}"
+        "megahit --presets meta-large -f -m 0.9 -t {params.P} -1 {input.fw} -2 {input.rv} -o {output_dir}MEGAHIT/{wildcards.pool} --out-prefix {wildcards.pool}"

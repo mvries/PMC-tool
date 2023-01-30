@@ -16,18 +16,18 @@ def make_pools(input_dir, configfile, read_depth):
     #Make dict to store reads counts for each sample:
     size_dict = {}
     #Make list of samples:
-    sample_list = glob.glob(input_dir + 'bowtie2/plant/*')
+    sample_list = glob.glob(input_dir + 'bbmap/*')
     #Loop over the samples (extract id and read count):
     print("Counting reads:")
     for sample in sample_list:
         #Extract ID:
         sample_id = sample.split('/')[-1]
         #Count forward reads:
-        cmd = "zcat " + sample + "/" + "*_1* | wc -l"
+        cmd = "zcat " + sample + "/" + "*normalized_1* | wc -l"
         fw_count_full = int(subprocess.check_output(cmd, shell=True))
         fw_count_reads = int(fw_count_full) / 4
         #Count reverse reads:
-        cmd = "zcat " + sample + "/" + "*_2* | wc -l"
+        cmd = "zcat " + sample + "/" + "*normalized_2* | wc -l"
         rv_count_full = int(subprocess.check_output(cmd, shell=True))
         rv_count_reads = int(rv_count_full) / 4
         #Calculate total reads for the sample:
@@ -70,7 +70,7 @@ def make_pools(input_dir, configfile, read_depth):
         for sample in pool:
             cmd = "mkdir " + input_dir + "Pools/pool" + str(pool_number) + "/" + sample
             subprocess.check_call(cmd, shell=True)
-            cmd = "mv " + input_dir + "bowtie2/plant/" + sample + '/* ' + input_dir + 'Pools/pool' + str(pool_number) + '/' + sample + "/"
+            cmd = "mv " + input_dir + "bbmap/" + sample + '/*norm* ' + input_dir + 'Pools/pool' + str(pool_number) + '/' + sample + "/"
             subprocess.check_call(cmd, shell=True)
         print("Pool " + str(pool_number) + " written.")
 

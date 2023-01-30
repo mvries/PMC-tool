@@ -32,3 +32,6 @@ include: "../rules/pre_processing/remove_phix.smk"
 
 #The following rule uses bowtie2 to remove host plant contamination:
 include: "../rules/pre_processing/remove_plant.smk"
+
+#The following rules uses bbnorm function from bbmap to normalize fastq kmer depth:
+include: "../rules/pre_processing/bbnorm.smk"
