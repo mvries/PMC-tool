@@ -70,7 +70,7 @@ def make_pools(input_dir, configfile, read_depth):
         for sample in pool:
             cmd = "mkdir " + input_dir + "Pools/pool" + str(pool_number) + "/" + sample
             subprocess.check_call(cmd, shell=True)
-            cmd = "mv " + input_dir + "bowtie2/plant/" + sample + '/* ' + input_dir + 'Pools/pool' + str(pool_number) + '/' + sample + "/"
+            cmd = "mv " + input_dir + "bbmap/" + sample + '/*norm* ' + input_dir + 'Pools/pool' + str(pool_number) + '/' + sample + "/"
             subprocess.check_call(cmd, shell=True)
         print("Pool " + str(pool_number) + " written.")
 
