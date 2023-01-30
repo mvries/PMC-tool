@@ -5,13 +5,13 @@ rule bbnorm:
     output:
         out1=f'{output_dir}' + "bbmap/" + "{sample}/{sample}_normalized_1.fq.gz",
         out2=f'{output_dir}' + "bbmap/" + "{sample}/{sample}_normalized_2.fq.gz",
-        toss1=f'{output_dir}' + "bbmap/" + "{sample}/{sample}_tossed.fq.gz",
         hist=f'{output_dir}' + "bbmap/" + "{sample}/{sample}.hist"
     threads:
         config["PARAMS"]["BBMAP"]["P"]
     params:
-        depth=config["PARAMS"]["BBMAP"]["D"]
+        depth=config["PARAMS"]["BBMAP"]["D"],
+        P=config["PARAMS"]["BBMAP"]["P"]
     conda:
         "../../envs/bbmap.yaml"
     shell:
-        "bbnorm.sh in={input.r1} in2={input.r2} out={output.out1} out2={output.out2} outt={output.toss1} hist={output.hist} target={params.depth}"
+        "bbnorm.sh target={params.depth} minprob=0.6 prefiltersize=0.50 prefilter=True in={input.r1} in2={input.r2} threads={params.P} out={output.out1} outt={output.out2} hist={output.hist} -Xmx100g"
