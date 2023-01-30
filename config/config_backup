@@ -35,6 +35,6 @@ PARAMS:
   P: 32
  BBMAP:
   #Numcores:
-  P: 32
+  P: 128
   #Desired kmer depth:
   D: 100
