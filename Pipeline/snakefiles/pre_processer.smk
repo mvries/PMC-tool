@@ -18,7 +18,7 @@ plant_reference= config["PLANT_REF"]
 ###Main rule:
 rule all:
     input:
-        expand(f'{output_dir}' + "bbmap/" + "{sample}/{sample}_normalized_1.fq.gz",
+        expand(f'{output_dir}' + "bowtie2/plant/" + "{sample}/{sample}_plant_removed_1.fq.gz",
         sample=config["SAMPLES"])
 
 #The following rule downloads samples from the sequence read archive:
