@@ -42,8 +42,8 @@ rule remove_plant:
 		bamplant1=temporary(f'{output_dir}' + "bowtie2/plant/" + "{sample}/{sample}_1_plant.bam"),
 		bamplant2=temporary(f'{output_dir}' + "bowtie2/plant/" + "{sample}/{sample}_2_plant.bam"),
 		sortedplant=temporary(f'{output_dir}' + "bowtie2/plant/" + "{sample}/{sample}_sorted_plant.bam"),
-		out1=temporary(f'{output_dir}' + "bowtie2/plant/" + "{sample}/{sample}_plant_removed_1.fq.gz"),
-		out2=temporary(f'{output_dir}' + "bowtie2/plant/" + "{sample}/{sample}_plant_removed_2.fq.gz")
+		out1=f'{output_dir}' + "bowtie2/plant/" + "{sample}/{sample}_plant_removed_1.fq.gz",
+		out2=f'{output_dir}' + "bowtie2/plant/" + "{sample}/{sample}_plant_removed_2.fq.gz"
 	conda:
 		"../../envs/bowtie2.yaml"
 	shell:
