@@ -1,6 +1,8 @@
 PARAMS:
  SRA:
+  #numcores:
   P: 8
+  #Sizes of buffers (probably fine (system limit is bottleneck...)):
   M: 10000MB
   B: 100MB
   C: 1000MB
@@ -21,20 +23,21 @@ PARAMS:
  MEGAHIT:
   P: 128
  VAMB:
-  P: 128
+  P: 32
   O: C
   M: 500
   MIN: 500000
  MINIMAP:
   P: 32
-  I: 500g
+  I: 12G
   K: 1500M
  CHECKM:
   P: 32
-
-
-POOLS:
- pool1:
+ BBMAP:
+  #Numcores:
+  P: 128
+  #Desired kmer depth:
+  D: 100
 
 SAMPLES:
  SRR17255025:
@@ -47,11 +50,23 @@ SAMPLES:
  SRR17255002:
  SRR17255003:
  SRR17255004:
+ SRR17255040 :
+ SRR17255041 :
+ SRR17255042 :
+ SRR17255043 :
+ SRR17255044:
+ SRR17255045:
+ SRR17255046:
+ SRR17255047:
+ SRR17255048:
+ SRR17255049:
 
 OUTPUT_PATH:
- /mnt/scratch/vries465/Pipeline_output/
-
+ /mnt/scratch/vries465/Pipeline_round2/
 PHIX_REF:
  ../../Input/references/phix.fasta
 PLANT_REF:
  ../../Input/references/tomato.fasta
+
+POOLS:
+ pool1:
