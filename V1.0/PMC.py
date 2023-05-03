@@ -26,12 +26,12 @@ print("outdir: " + output_dir)
 print("cores: " + cores)
 
 #Establish path to the snakemake config file:
-configfile = "../config/config.yaml"
+configfile = "config/config.yaml"
 
 #Reset config file for next run:
-cmd = "rm ../config/config.yaml"
+cmd = "rm config/config.yaml"
 subprocess.check_call(cmd, shell=True)
-cmd = "cp ../config/config_backup ../config/config.yaml"
+cmd = "cp config/config_backup ../config/config.yaml"
 subprocess.check_call(cmd, shell=True)
 
 #Use the make_config script to prepare the config file for execution:
@@ -45,7 +45,7 @@ subprocess.check_call(cmd, shell=True)
 cmd = "snakemake --rerun-incomplete --cores " + str(cores) + " --use-conda " + "--snakefile snakefiles/pre_processer.smk"
 subprocess.check_call(cmd, shell=True)
 
-#Clear the cache directorie for SRA download:
+#Clear the cache directory for SRA download:
 print("Clearing cache Dir...")
 
 cmd = "rm -r /dev/shm/sra"
@@ -54,7 +54,7 @@ subprocess.check_call(cmd, shell=True)
 print("Starting MEGAHIT assemblies:")
 #Perform the pooling of the samples:
 sample_pooler.make_pools(output_dir, configfile, 1000000000)
-#Make directorie for megahit output:
+#Make directory for megahit output:
 cmd = "mkdir " + str(output_dir) + "MEGAHIT"
 subprocess.check_call(cmd, shell=True)
 cmd = "snakemake --cores " + str(cores) + " --use-conda " + "--snakefile snakefiles/co_assembly.smk"
