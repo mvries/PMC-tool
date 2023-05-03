@@ -1,11 +1,9 @@
 #This is a python wrapper that controls the PMC workflow.
 #Running this script with the required inputs automatically performs analysis.
-#To use: Python3 PMC.py sample_file phix.fasta plant.fasta output_dir/ ncores Assembly_type
-#Possible assembly types: single (runs metaspades on each sample) co (runs megahit on pooled samples)
-#This is a python wrapper that controlls the entire workflow.
+#To use: Python3 PMC.py sample_file phix.fasta plant.fasta output_dir/ ncores
+#This is a python wrapper that controls the entire workflow.
 #Running this script with the required inputs automatically performs analysis.
 #To use: Python3 PMC.py sample_file configfile phix.fasta plant.fasta output_dir/ ncores
-
 
 #Import statements:
 from sys import argv
@@ -19,7 +17,6 @@ phix = argv[2]
 plant = argv[3]
 output_dir = argv[4]
 cores = argv[5]
-atype = argv[6]
 
 print("Pipeline initiated with the following arguments:")
 print("sample file: " + sample_file)
@@ -27,7 +24,6 @@ print("phix: " + phix)
 print("plant: " + plant)
 print("outdir: " + output_dir)
 print("cores: " + cores)
-print("atype: " + atype)
 
 #Establish path to the snakemake config file:
 configfile = "../config/config.yaml"
@@ -55,19 +51,11 @@ print("Clearing cache Dir...")
 cmd = "rm -r /dev/shm/sra"
 subprocess.check_call(cmd, shell=True)
 
-"""
-#Run the appropriate snekmake assembly workflow depending on the assembly type:
-if atype == "single":
-    print("Starting spades assemblies:")
-    cmd = "snakemake --cores " + str(cores) + " --use-conda " + "--snakefile snakefiles/spades_assembly.smk"
-    subprocess.check_call(cmd, shell=True)
-else:
-    print("Starting MEGAHIT assemblies:")
-    #Perform the pooling of the samples:
-    sample_pooler.make_pools(output_dir, configfile, 1000000000)
-    #Make directorie for megahit output:
-    cmd = "mkdir " + str(output_dir) + "MEGAHIT"
-    subprocess.check_call(cmd, shell=True)
-    cmd = "snakemake --cores " + str(cores) + " --use-conda " + "--snakefile snakefiles/co_assembly.smk"
-    subprocess.check_call(cmd, shell=True)
-"""
+print("Starting MEGAHIT assemblies:")
+#Perform the pooling of the samples:
+sample_pooler.make_pools(output_dir, configfile, 1000000000)
+#Make directorie for megahit output:
+cmd = "mkdir " + str(output_dir) + "MEGAHIT"
+subprocess.check_call(cmd, shell=True)
+cmd = "snakemake --cores " + str(cores) + " --use-conda " + "--snakefile snakefiles/co_assembly.smk"
+subprocess.check_call(cmd, shell=True)
