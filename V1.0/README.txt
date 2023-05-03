@@ -4,6 +4,7 @@ A copy of my thesis is included in this git repo that contains aditional informa
 This is in part a snakemake workflow.
 The snakemake workflow handles the sample downloading, quality control, normalisation, assembly and subsequent binning with MAGSCoT.
 The snakemake part of this workflow is handled by the PMC.py wrapper, the instructions can be found in the documentation of that script.
+An example of how the input sample TXT file should look like is also included.
 
 After the binning, Taxonomy is assigned to the MAG set using an SSU linkage approach first reported by Lesker et al.
 The scripts and the instructions for the linkage procedure are in the linkage directory.
