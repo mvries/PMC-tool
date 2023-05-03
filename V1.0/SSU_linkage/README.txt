@@ -1,7 +1,8 @@
 Linkage of SSU genes to bins requires the following preperation steps:
+Note that each of the tools that is used here has a dedicated conda env yaml file in the Environments folder.
 
 
-First a blast search is performed (Use the blast conda environment in the Environments folder):
+First a blast search is performed:
 1. Create blast database:
 makeblastdb -type nucl -in "SSU_sequences.fasta"
 
