@@ -4,7 +4,9 @@ rule map_to_assembly:
     params:
         P=config["PARAMS"]["MINIMAP"]["P"]
     input:
-        f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs.fa"
+        assembly=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs.fa",
+        r1= ,
+        r2= ,
     output:
         f'{output_dir}' + "Quast/" + "{pool}" + "/report.html"
     conda:
