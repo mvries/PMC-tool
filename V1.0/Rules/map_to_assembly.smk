@@ -5,20 +5,11 @@ rule map_to_assembly:
         P=config["PARAMS"]["MINIMAP"]["P"]
     input:
         assembly=f'{output_dir}' + "MEGAHIT/{pool}/{pool}.contigs.fa",
-        r1= ,
-        r2= ,
+        fw=f'{output_dir}' + "Pools/{pool}/pooled_reads_1.fq",
+        rv=f'{output_dir}' + "Pools/{pool}/pooled_reads_2.fq"
     output:
-        f'{output_dir}' + "Quast/" + "{pool}" + "/report.html"
+        f'{output_dir}' + "minimap/assemblies/" + "{pool}.bam"
     conda:
         "../../envs/Quast.yaml"
     shell:
-        "minimap2 -ax sr {input.assembly} -t {params.P} -o {output_dir}Quast/{wildcards.pool} {input}"
-        
-        
-        
-MINIMAP:
-  P: 32
-  I: 500
-  K: 1500M
-
-    ./minimap2 -ax sr ref.fa read1.fa read2.fa > aln.sam
+        "minimap2 -ax sr {input.assembly} -t {params.P} {input.fw} {input.rv} | samtools view -b -@ {params.p} | samtools sort -@ {params.p} -o {output}"
