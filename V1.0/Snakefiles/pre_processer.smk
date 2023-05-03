@@ -28,7 +28,7 @@ include: "../rules/pre_processing/sample_download.smk"
 include: "../rules/pre_processing/fastp.smk"
 
 #The following rule uses bowtie2 to remove phix contamination:
-#include: "../rules/pre_processing/remove_phix.smk"
+include: "../rules/pre_processing/remove_phix.smk"
 
 #The following rule uses bowtie2 to remove host plant contamination:
 include: "../rules/pre_processing/remove_plant.smk"
