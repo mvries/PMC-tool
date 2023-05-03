@@ -33,6 +33,8 @@ reformat-blast-results.sh filtered-BlastOut.tab 16SrRNAnames.txt BinNames.txt
 #final output: "matrix-Blast.tab"
 
 
+
+
 The next step is split mapping of reads to both SSU genes and MAGs:
 1. Create BBmap index for all bins
 bbsplit.sh ref=${Folder-of-all-bins}
@@ -52,7 +54,7 @@ cov-statsfiles-unpaired-all rpkm-statsfiles-unpaired-all
 # for each bin ($BinNr) we preform:
 zcat ./splited-read-*/out_bin_${BinNr}.fastq.gz | \
 bbmap.sh local=t -Xmx30g unpigz=t threads=${usedCores} minid=0.90 \
-ref=RAMBL-16sRNAsequences.fasta nodisk \
+ref="SSU_genes.fasta" nodisk \
 interleaved=false \
 statsfile=./statsfiles-unpaired-all/${BinNr}.statsfile \
 scafstats=./scafstats-statsfiles-unpaired-all/${BinNr}.scafstats \
@@ -69,11 +71,15 @@ make-splitmapping-stats.sh
 #final output: "final-unambiguousReads.tab"
 
 
+
+
+
+
 The last step is the calculation of the spearman and pearsons correlations for the bin SSU pairs:
 1. Create 16S rRNA gene abundances over all samples
 # for each Sample ($SampleName) with ReadR1 ($Fastq_R1) and ReadR2 ($Fastq_R2) we preform:
 bbmap.sh -Xmx30g unpigz=t threads=${usedCores} minid=0.90 \
-ref=RAMBL-16sRNAsequences.fasta nodisk \
+ref="SSU_genes.fasta" nodisk \
 statsfile=16SrRNA-statsfiles/${SampleName}.statsfile \
 scafstats=16SrRNA-scafstats-statsfiles/${SampleName}.scafstats \
 covstats=16SrRNA-cov-statsfiles/${SampleName}.covstat \
@@ -119,6 +125,9 @@ in2=${SampleName}_R2_rmhost.fastq.gz
 make-bin-mapping-stats.sh
 
 #final output: "bin-abundances.tab"
+
+
+
 
 Finally an integrated score is calculated using the linkage script.
 
