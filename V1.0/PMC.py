@@ -10,7 +10,7 @@ from sys import argv
 import subprocess
 from scripts import make_config
 from scripts import sample_pooler
-from scripts import
+from scripts import contig_file.py
 
 #State directories and files needed:
 sample_file = argv[1]
@@ -63,5 +63,19 @@ cmd = "snakemake --cores " + str(cores) + " --use-conda " + "--snakefile Snakefi
 subprocess.check_call(cmd, shell=True)
 
 #After the individual binning tools are done we have to run some scripts so we can do the binning with magscot:
+#Note that MAGSCOT needs to be in your path (This tool is not conda compatible), all the dependencies are in the magscot conda environment
 #First we need to make a contig to bin file
+contig_file.make_contig_to_bin(output_dir/metabat/, metabat, output_dir/metabat_to_bin.tsv)
+contig_file.make_contig_to_bin(output_dir/concoct/, concoct, output_dir/concoct_to_bin.tsv)
+contig_file.make_contig_to_bin(output_dir/maxbin/, maxbin, output_dir/maxbin_to_bin.tsv)
+
+cmd = "cat " + str(output_dir) + "*_to_bin.tsv >> " + str(output_dir) + "final_bin.tsv"
+subprocess.check_call(cmd, shell=True)
+
+cmd = "conda env create -f Environments/magscot.yaml"
+subprocess.check_call(cmd, shell=True)
+
+
+
+
 
