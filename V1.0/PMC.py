@@ -75,6 +75,8 @@ subprocess.check_call(cmd, shell=True)
 cmd = "conda env create -f Environments/magscot.yaml"
 subprocess.check_call(cmd, shell=True)
 
+cmd = "MAGScoT.R -i " + str(output_dir) + "final_bin.tsv " + "-o " + str(output_dir)/magscot/
+
 
 
 
