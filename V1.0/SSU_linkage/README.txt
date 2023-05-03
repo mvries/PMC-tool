@@ -1,3 +1,6 @@
+This linkage strategy was oriiginally describe by Lesker et al:
+https://github.com/tillrobin/iMGMC
+
 Linkage of SSU genes to bins requires the following preperation steps:
 Note that each of the tools that is used here has a dedicated conda env yaml file in the Environments folder.
 
