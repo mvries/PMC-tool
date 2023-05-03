@@ -32,5 +32,7 @@ include: "../rules/megahit_assembly/megahit.smk"
 #Run the rule that performs QUAST quality assesment of the megahit assembly:
 include: "../rules/megahit_assembly/Quast_Pools.smk"
 
-#un the rules that are needed to perform binnign with vamb:
-include: "../rules/megahit_assembly/vamb_pools.smk"
+#Map the pools of reads back to the assemblies
+include: "../rules/megahit_assembly/map_to_assembly.smk"
+    
+    
