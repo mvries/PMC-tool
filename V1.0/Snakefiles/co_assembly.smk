@@ -34,5 +34,9 @@ include: "../rules/megahit_assembly/Quast_Pools.smk"
 
 #Map the pools of reads back to the assemblies
 include: "../rules/megahit_assembly/map_to_assembly.smk"
+
+#Perform the binning with metabat2
+include: "../rules/megahit_assembly/metabat.smk"
+
     
     
