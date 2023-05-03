@@ -1,5 +1,8 @@
-This github repo was originally made for my master thesis project "Building an integrated plant microbiome MAG catalogue"
+This github repo was originally made for my master thesis project "Building an integrated plant microbiome MAG catalogue".
 A copy of my thesis is included in this git repo that contains additinal information on the tool and results that have been obtained.
 
 This is in part a snakemake workflow.
-The snakemake workflow handles the sample downloading, quality control, normalisation
+The snakemake workflow handles the sample downloading, quality control, normalisation, assembly and subsequent binning with MAGSCoT
+
+After the binning, Taxonomy is assigned to the MAG set using an SSU linkage approach first reported by Lesker et al.
+The scripts and the instructions for the linkage procedure are in the linkage directory.
