@@ -38,3 +38,5 @@ PARAMS:
   P: 128
   #Desired kmer depth:
   D: 100
+ METABAT:
+  P: 128
