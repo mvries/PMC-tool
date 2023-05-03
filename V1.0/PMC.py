@@ -42,7 +42,7 @@ cmd = "conda config --set channel_priority strict"
 subprocess.check_call(cmd, shell=True)
 
 #Run the snakemake workflow that downloads and pre processes the input samples:
-cmd = "snakemake --rerun-incomplete --cores " + str(cores) + " --use-conda " + "--snakefile snakefiles/pre_processer.smk"
+cmd = "snakemake --rerun-incomplete --cores " + str(cores) + " --use-conda " + "--snakefile Snakefiles/pre_processer.smk"
 subprocess.check_call(cmd, shell=True)
 
 #Clear the cache directory for SRA download:
@@ -57,5 +57,5 @@ sample_pooler.make_pools(output_dir, configfile, 1000000000)
 #Make directory for megahit output:
 cmd = "mkdir " + str(output_dir) + "MEGAHIT"
 subprocess.check_call(cmd, shell=True)
-cmd = "snakemake --cores " + str(cores) + " --use-conda " + "--snakefile snakefiles/co_assembly.smk"
+cmd = "snakemake --cores " + str(cores) + " --use-conda " + "--snakefile Snakefiles/co_assembly.smk"
 subprocess.check_call(cmd, shell=True)
