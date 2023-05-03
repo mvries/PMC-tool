@@ -141,5 +141,6 @@ done
 Run Integration pipeline in R
 See instructions in the Linkage.R script.
 
-
+The final results is a file that indicates the top hits for each SSU gene to each bin.
+After that the floor is yours!
 
