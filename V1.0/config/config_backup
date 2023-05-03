@@ -1,0 +1,40 @@
+PARAMS:
+ SRA:
+  #numcores:
+  P: 8
+  #Sizes of buffers (probably fine (system limit is bottleneck...)):
+  M: 10000MB
+  B: 100MB
+  C: 1000MB
+ FASTP:
+  Q: 20
+  N: 0
+  E: 20
+  P: 8
+ BOWTIE2:
+  S: --very-sensitive
+  P: 32
+  M: 5
+ SPADES:
+  P: 32
+  M: 10000
+ QUAST:
+  P: 12
+ MEGAHIT:
+  P: 128
+ VAMB:
+  P: 32
+  O: C
+  M: 500
+  MIN: 500000
+ MINIMAP:
+  P: 32
+  I: 500
+  K: 1500M
+ CHECKM:
+  P: 32
+ BBMAP:
+  #Numcores:
+  P: 128
+  #Desired kmer depth:
+  D: 100
