@@ -19,7 +19,7 @@ plant_reference= config["PLANT_REF"]
 ###Main rule:
 rule all:
     input:
-        expand(f'{output_dir}' + "vamb/" + "{pool}/checkm.results",
+        expand(f'{output_dir}' + "minimap/assemblies/" + "{pool}.bam",
         pool=config["POOLS"])
 
 
