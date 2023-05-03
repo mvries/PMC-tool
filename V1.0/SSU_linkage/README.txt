@@ -1,4 +1,4 @@
-This linkage strategy was oriiginally describe by Lesker et al:
+This linkage strategy was originally describe by Lesker et al:
 https://github.com/tillrobin/iMGMC
 
 Linkage of SSU genes to bins requires the following preperation steps:
