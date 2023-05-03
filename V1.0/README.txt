@@ -6,3 +6,5 @@ The snakemake workflow handles the sample downloading, quality control, normalis
 
 After the binning, Taxonomy is assigned to the MAG set using an SSU linkage approach first reported by Lesker et al.
 The scripts and the instructions for the linkage procedure are in the linkage directory.
+
+In addition, the scripts that were used to make the plots for my thesis with the data from this pipeline can also be found in the scripts diorectory.
