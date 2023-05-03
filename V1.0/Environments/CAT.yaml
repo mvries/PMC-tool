@@ -1,0 +1,40 @@
+name: CAT
+channels:
+  - defaults
+  - conda-forge
+  - bioconda
+dependencies:
+  - _libgcc_mutex=0.1=main
+  - _openmp_mutex=5.1=1_gnu
+  - blas=1.0=openblas
+  - boost=1.67.0=py37_4
+  - bzip2=1.0.8=h7b6447c_0
+  - ca-certificates=2023.01.10=h06a4308_0
+  - cat=5.2.3=hdfd78af_1
+  - certifi=2022.12.7=py37h06a4308_0
+  - diamond=0.9.24=ha87ae23_0
+  - icu=58.2=he6710b0_3
+  - ld_impl_linux-64=2.38=h1181459_1
+  - libboost=1.67.0=h46d08c1_4
+  - libffi=3.4.2=h6a678d5_6
+  - libgcc-ng=11.2.0=h1234567_1
+  - libgfortran-ng=11.2.0=h00389a5_1
+  - libgfortran5=11.2.0=h1234567_1
+  - libgomp=11.2.0=h1234567_1
+  - libopenblas=0.3.21=h043d6bf_0
+  - libstdcxx-ng=11.2.0=h1234567_1
+  - ncurses=6.4=h6a678d5_0
+  - numpy=1.21.5=py37hf838250_3
+  - numpy-base=1.21.5=py37h1e6e340_3
+  - openssl=1.1.1t=h7f8727e_0
+  - pip=22.3.1=py37h06a4308_0
+  - prodigal=2.6.3=hec16e2b_4
+  - py-boost=1.67.0=py37h04863e7_4
+  - python=3.7.16=h7a1cb2a_0
+  - readline=8.2=h5eee18b_0
+  - setuptools=65.6.3=py37h06a4308_0
+  - sqlite=3.40.1=h5082296_0
+  - tk=8.6.12=h1ccaba5_0
+  - wheel=0.38.4=py37h06a4308_0
+  - xz=5.2.10=h5eee18b_1
+  - zlib=1.2.13=h5eee18b_0
