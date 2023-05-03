@@ -37,6 +37,12 @@ include: "../rules/megahit_assembly/map_to_assembly.smk"
 
 #Perform the binning with metabat2
 include: "../rules/megahit_assembly/metabat.smk"
+    
+#Perform the binning with concoct
+
+#Perform the binning with maxbin
+
+#Perform the final binning with MAGSCoT
 
     
     
