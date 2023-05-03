@@ -10,6 +10,7 @@ from sys import argv
 import subprocess
 from scripts import make_config
 from scripts import sample_pooler
+from scripts import
 
 #State directories and files needed:
 sample_file = argv[1]
@@ -60,3 +61,7 @@ cmd = "mkdir " + str(output_dir) + "MEGAHIT"
 subprocess.check_call(cmd, shell=True)
 cmd = "snakemake --cores " + str(cores) + " --use-conda " + "--snakefile Snakefiles/co_assembly.smk"
 subprocess.check_call(cmd, shell=True)
+
+#After the individual binning tools are done we have to run some scripts so we can do the binning with magscot:
+#First we need to make a contig to bin file
+
