@@ -53,6 +53,7 @@ subprocess.check_call(cmd, shell=True)
 
 print("Starting MEGAHIT assemblies:")
 #Perform the pooling of the samples:
+#By default pools of 1 billion read pairs are made.
 sample_pooler.make_pools(output_dir, configfile, 1000000000)
 #Make directory for megahit output:
 cmd = "mkdir " + str(output_dir) + "MEGAHIT"
