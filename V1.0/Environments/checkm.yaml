@@ -74,7 +74,7 @@ dependencies:
   - six=1.16.0=pyh6c4a22f_0
   - sqlite=3.40.0=h4ff8645_0
   - tk=8.6.12=h27826a3_0
-  - typing-extensions=4.4.0=hd8ed1ab_0
+  - typing-extensions=4.4.0=hd/BIF/nobackup/vries465/mamba/envs/bbmap8ed1ab_0
   - typing_extensions=4.4.0=pyha770c72_0
   - unicodedata2=14.0.0=py37h540881e_1
   - wget=1.20.3=ha56f1ee_1
@@ -82,4 +82,3 @@ dependencies:
   - xz=5.2.6=h166bdaf_0
   - zlib=1.2.13=h166bdaf_4
   - zstd=1.5.2=h3eb15da_6
-prefix: /lustre/BIF/nobackup/vries465/mamba/envs/checkm
