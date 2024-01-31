@@ -10,6 +10,6 @@ rule map_to_assembly:
     output:
         f'{output_dir}' + "minimap/assemblies/" + "{pool}.bam"
     conda:
-        "../../envs/Quast.yaml"
+        "../Environments/Quast.yaml"
     shell:
         "minimap2 -ax sr {input.assembly} -t {params.P} {input.fw} {input.rv} | samtools view -b -@ {params.p} | samtools sort -@ {params.p} -o {output}"

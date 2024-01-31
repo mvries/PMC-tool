@@ -9,7 +9,7 @@ rule bowtie_build_phix:
     output:
         f'{phix_reference}' + '.rev.1.bt2'
     conda:
-        "../../envs/bowtie2.yaml"
+        "../Environments/bowtie2.yaml"
     shell:
         "bowtie2-build {input} {input}"
 
@@ -27,7 +27,7 @@ rule bowtie_map_phix:
     output:
         sam=temporary(f'{output_dir}' + "bowtie2/phix/" + "{sample}/{sample}_phix_bt2.sam")
     conda:
-        "../../envs/bowtie2.yaml"
+        "../Environments/bowtie2.yaml"
     shell:
         "bowtie2 {params.S} -p {params.P} -x {phix_reference} -1 {input.r1} -2 {input.r2} -S {output.sam}"
 
@@ -45,6 +45,6 @@ rule remove_phix:
         out1=temporary(f'{output_dir}' + "bowtie2/phix/" + "{sample}/{sample}_phix_removed_1.fq.gz"),
         out2=temporary(f'{output_dir}' + "bowtie2/phix/" + "{sample}/{sample}_phix_removed_2.fq.gz")
     conda:
-        "../../envs/bowtie2.yaml"
+        "../Environments/bowtie2.yaml"
     shell:
         "samtools view -@ {params.P} -bS {input} -o {output.bam1} && samtools view {output.bam1} -@ {params.P} -b -f 12 -F 256 -o {output.bam2} && samtools sort {output.bam2} -n -@ {params.P} -o {output.sorted} && samtools fastq -N -@ {params.P} -1 {output.out1} -2 {output.out2} {output.sorted}"

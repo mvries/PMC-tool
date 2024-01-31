@@ -8,6 +8,6 @@ rule Quast_pools:
     output:
         f'{output_dir}' + "Quast/" + "{pool}" + "/report.html"
     conda:
-        "../../envs/Quast.yaml"
+        "../Environments/Quast.yaml"
     shell:
         "metaquast --max-ref-number 0 -t {params.P} -o {output_dir}Quast/{wildcards.pool} {input}"

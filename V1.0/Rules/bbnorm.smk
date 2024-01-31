@@ -13,7 +13,7 @@ rule bbnorm:
         depth=config["PARAMS"]["BBMAP"]["D"],
         P=config["PARAMS"]["BBMAP"]["P"]
     conda:
-        "../../envs/bbmap.yaml"
+        "../Environments/bbmap.yaml"
     log:
         f'{output_dir}' + "bbmap/" + "{sample}/{sample}_bbnorm.log"
     shell:

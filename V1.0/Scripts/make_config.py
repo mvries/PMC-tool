@@ -18,7 +18,7 @@ def make_config(sample_file, configfile, phix, plant, output_dir):
 		config_file.write('SAMPLES:\n')
 
 		for sample in sample_list:
-			config_file.write(" " + sample + ":\n")
+			config_file.write(" " + sample + "\n")
 
 
         #Add empty line to keep the file readable:

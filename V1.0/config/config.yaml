@@ -1,9 +1,9 @@
 PARAMS:
  SRA:
   #numcores:
-  P: 8
+  P: 4
   #Sizes of buffers (probably fine (system limit is bottleneck...)):
-  M: 10000MB
+  M: 80000MB
   B: 100MB
   C: 1000MB
  FASTP:
@@ -42,4 +42,12 @@ PARAMS:
   P: 128
 
 SAMPLES:
+ SRR17255025
+
+OUTPUT_PATH:
+ ../../PMC_data/PMC_output/
+PHIX_REF:
+ ../../PMC_data/phix.fasta
+PLANT_REF:
+ ../../PMC_data/plant.fasta
 

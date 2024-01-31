@@ -9,6 +9,6 @@ rule maxbin:
     output:
         {output_dir} + "maxbin/{pool}/"
     conda:
-        "../../envs/concoct.yaml"
+        "../Environments/concoct.yaml"
     shell:
         "run_maxbin.pl -contig {input.assembly} -abund {input.depth} o {output}"

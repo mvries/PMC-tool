@@ -9,6 +9,6 @@ rule metabat:
     output:
         {output_dir} + "metabat/{pool}/"
     conda:
-        "../../envs/metabat.yaml"
+        "../Environments/metabat.yaml"
     shell:
         "jgi_summarize_bam_contig_depths --outputDepth {output}metabat_depth {input.bam} && metabat2 -i {input.assembly} -a {output}metabat_depth -o {output}"

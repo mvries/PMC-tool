@@ -5,7 +5,9 @@ from snakemake.utils import min_version
 min_version("6.0")
 
 #set config file:
-configfile: "../config/config.yaml"
+configfile: "config/config.yaml"
+
+print(config)
 
 #Determine input and output paths for snakemake:
 output_dir = config["OUTPUT_PATH"]
@@ -22,16 +24,16 @@ rule all:
         sample=config["SAMPLES"])
 
 #The following rule downloads samples from the sequence read archive:
-include: "../rules/pre_processing/sample_download.smk"
+include: "../Rules/sample_download.smk"
 
 #The following rule is used to perform quality control of input reads with fastp:
-include: "../rules/pre_processing/fastp.smk"
+include: "../Rules/fastp.smk"
 
 #The following rule uses bowtie2 to remove phix contamination:
-include: "../rules/pre_processing/remove_phix.smk"
+include: "../Rules/remove_phix.smk"
 
 #The following rule uses bowtie2 to remove host plant contamination:
-include: "../rules/pre_processing/remove_plant.smk"
+include: "../Rules/remove_plant.smk"
 
 #The following rules uses bbnorm function from bbmap to normalize fastq kmer depth:
-include: "../rules/pre_processing/bbnorm.smk"
+include: "../Rules/bbnorm.smk"
