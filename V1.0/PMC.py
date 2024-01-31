@@ -1,9 +1,6 @@
 #This is a python wrapper that controls the PMC workflow.
 #Running this script with the required inputs automatically performs analysis.
 #To use: Python3 PMC.py sample_file phix.fasta plant.fasta output_dir/ ncores
-#This is a python wrapper that controls the entire workflow.
-#Running this script with the required inputs automatically performs analysis.
-#To use: Python3 PMC.py sample_file configfile phix.fasta plant.fasta output_dir/ ncores
 
 #Import statements:
 from sys import argv
